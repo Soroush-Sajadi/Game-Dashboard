@@ -1,0 +1,28 @@
+.side-bar {
+  height: 440px;
+  width: 18%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+}
+ ul {
+  color: aliceblue;
+  list-style-type: none;
+  margin-right: 28px;
+
+}
+li {
+  border-bottom: 1px solid white;
+  text-align: center;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.closeIcon {
+  width: 10%;
+  float: right;
+  margin: 10px;
+}
+.sideBar-closeIcon {
+  width: 100%;
+}
