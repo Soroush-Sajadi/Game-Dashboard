@@ -17,11 +17,19 @@ li {
   margin: 20px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 .closeIcon {
   width: 10%;
   float: right;
   margin: 10px;
+  cursor: pointer;
+}
+.closeIcon:hover {
+  transform: scale(1.2);
+}
+li:hover {
+  background-color:#625d5d;
 }
 .sideBar-closeIcon {
   width: 100%;

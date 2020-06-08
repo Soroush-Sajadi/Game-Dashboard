@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {NavLink} from 'react-router-dom';
 import closeIcon from '../Images/close.svg';
 import iconHome from '../Images/iconsHome.svg';
 import iconSetting from '../Images/iconSettings.svg';
@@ -19,18 +20,24 @@ function SideBar()  {
       </div>
       <div className="sideBar-Route">
         <ul>
-          <li>
-            <img src={iconHome}/>
-            Home
-          </li>
-          <li>
-            <img src={iconSetting}/>
-            Settings
-          </li>
-          <li>
-            <img src={logIn} />
-            Log In
-          </li>
+          <NavLink to="/" style={{ textDecoration: 'none', color: 'white' }}>
+            <li>
+              <img src={iconHome}/>
+              Home
+            </li>  
+          </NavLink>
+          <NavLink to="/setting" style={{ textDecoration: 'none', color: 'white' }}>
+            <li>
+              <img src={iconSetting}/>
+              Settings
+            </li>
+          </NavLink>
+          <NavLink to="/login" style={{ textDecoration: 'none', color: 'white' }}>
+            <li>
+              <img src={logIn} />
+              Log In
+            </li>
+          </NavLink>
         </ul>
       </div>
     </div>
