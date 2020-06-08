@@ -4,6 +4,7 @@ import closeIcon from '../Images/close.svg';
 import iconHome from '../Images/iconsHome.svg';
 import iconSetting from '../Images/iconSettings.svg';
 import logIn from '../Images/login.svg';
+import openMenu from '../Images/openMenu.svg';
 import './SideBar.css'
 
 function SideBar()  {
@@ -12,11 +13,15 @@ function SideBar()  {
 
   useEffect(() => console.log(isOpen), [isOpen]);
 
+  const toggle = () => {
+    setIsOpen(isOpen => !isOpen);
+  }
+
   return (
-      
-    <div className="side-bar">
+    <>
+    <div className={isOpen ? 'side-bar': 'side-bar-in'}>
       <div className="sideBar-closeIcon">
-        <img className="closeIcon" src={closeIcon} alt='close Icon' />
+        <img className="closeIcon close" src={isOpen ? closeIcon : openMenu} alt='close Icon' onClick={toggle} />
       </div>
       <div className="sideBar-Route">
         <ul>
@@ -41,6 +46,8 @@ function SideBar()  {
         </ul>
       </div>
     </div>
+    
+    </>
   );
 }
 export default SideBar;
