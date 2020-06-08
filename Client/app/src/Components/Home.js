@@ -1,8 +1,9 @@
 import React from 'react';
+import './Home.css'
 
-function Home () {
+function Home ({sideBarState}) {
   return (
-    <div>
+    <div className={sideBarState ? 'home-wraper-open':'home-wraper-close'}>
       Here is Home
     </div>
   )

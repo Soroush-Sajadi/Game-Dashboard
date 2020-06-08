@@ -1,8 +1,9 @@
 import React from 'react';
+import './Setting.css'
 
-function Setting () {
+function Setting ({ sideBarState }) {
   return (
-    <div>
+    <div className={ sideBarState ? 'setting-wraper-open': 'setting-wraper-close' }>
       Here is the Setting
     </div>
   )

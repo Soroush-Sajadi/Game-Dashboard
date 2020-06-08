@@ -1,9 +1,11 @@
+
 .side-bar {
   height: 440px;
   width: 18%;
   background-color: black;
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
 }
 .side-bar-in {
   height: 440px;
@@ -11,6 +13,7 @@
   background-color: black;
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
 }
  ul {
   color: aliceblue;
@@ -30,6 +33,12 @@ li {
   width: 20px;
   margin: 10px;
   cursor: pointer;
+}
+.openIcon {
+  width: 25px;
+  margin: 10px;
+  cursor: pointer;
+  margin-left: 2px;
 }
 .closeIcon:hover {
   transform: scale(1.2);

@@ -1,8 +1,9 @@
 import React from 'react';
+import './LogIn.css'
 
-function LogIn () {
+function LogIn ({ sideBarState }) {
   return (
-    <div>
+    <div className={ sideBarState ? 'login-wraper-open': 'login-wraper-close'}>
       Here is LogIn
     </div>
   )

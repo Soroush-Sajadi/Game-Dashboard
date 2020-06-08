@@ -1,0 +1,22 @@
+.login-wraper-open {
+    float: right;
+    width: 80%;
+  }
+  .login-wraper-close {
+    float: right;
+    width: 94%;
+  }
+  .login-wraper-close {
+    animation-duration: 2s;
+    animation-name: slideinLog;
+  }
+  @keyframes slideinLog {
+    from {
+      width: 80%; 
+    }
+  
+    to {
+      width: 94%;
+    }
+  }
+  

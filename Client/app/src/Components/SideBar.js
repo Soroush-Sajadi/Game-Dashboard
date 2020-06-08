@@ -7,21 +7,20 @@ import logIn from '../Images/login.svg';
 import openMenu from '../Images/openMenu.svg';
 import './SideBar.css'
 
-function SideBar()  {
+function SideBar({toggleToApp})  {
   // Declare a new state variable, which we'll call "count"
   const [isOpen, setIsOpen] = useState(true);
 
-  useEffect(() => console.log(isOpen), [isOpen]);
-
   const toggle = () => {
     setIsOpen(isOpen => !isOpen);
+    toggleToApp(isOpen);
   }
 
   return (
     <>
     <div className={isOpen ? 'side-bar': 'side-bar-in'}>
       <div className="sideBar-closeIcon">
-        <img className="closeIcon close" src={isOpen ? closeIcon : openMenu} alt='close Icon' onClick={toggle} />
+        <img className={isOpen ? 'closeIcon': 'openIcon'} src={isOpen ? closeIcon : openMenu} alt='close Icon' onClick={toggle} />
       </div>
       <div className="sideBar-Route">
         <ul>
@@ -46,7 +45,6 @@ function SideBar()  {
         </ul>
       </div>
     </div>
-    
     </>
   );
 }

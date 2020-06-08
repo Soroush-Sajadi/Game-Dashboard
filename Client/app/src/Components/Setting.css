@@ -1,0 +1,22 @@
+.setting-wraper-open {
+    float: right;
+    width: 80%;
+  }
+  .setting-wraper-close {
+    float: right;
+    width: 94%;
+  }
+  .setting-wraper-close {
+    animation-duration: 2s;
+    animation-name: slideinSetting;
+  }
+  @keyframes slideinSetting {
+    from {
+      width: 80%; 
+    }
+  
+    to {
+      width: 94%;
+    }
+  }
+  

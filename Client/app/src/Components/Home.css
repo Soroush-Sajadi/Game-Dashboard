@@ -1,0 +1,22 @@
+.home-wraper-open {
+    float: right;
+    width: 80%;
+  }
+  .home-wraper-close {
+    float: right;
+    width: 94%;
+  }
+  .home-wraper-close {
+    animation-duration: 2s;
+    animation-name: slideinHome;
+  }
+  @keyframes slideinHome {
+    from {
+      width: 80%; 
+    }
+  
+    to {
+      width: 94%;
+    }
+  }
+ 
