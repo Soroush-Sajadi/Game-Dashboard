@@ -1,14 +1,32 @@
 .home-wraper-open {
     float: right;
     width: 80%;
+    text-align: center;
   }
   .home-wraper-close {
     float: right;
     width: 94%;
+    text-align: center;
   }
   .home-wraper-close {
     animation-duration: 2s;
     animation-name: slideinHome;
+  }
+  .title {
+    text-align: center;
+  }
+
+  .card img {
+    width: 200px;
+    height: 140px
+  }
+  .card {
+    text-align: center;
+    margin: 5%;
+  }
+  .card-wraper {
+    display: flex;
+    text-align: center;
   }
   @keyframes slideinHome {
     from {

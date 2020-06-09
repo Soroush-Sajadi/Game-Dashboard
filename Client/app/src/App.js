@@ -14,9 +14,6 @@ function App() {
   const toggle = (childData) => {
     setIsOpen(!childData);
   }
-
-  useEffect(() => console.log( '1____',isOpen)
-  , [isOpen]);
  
   return (
     <div className="App">

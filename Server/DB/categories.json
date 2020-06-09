@@ -1,0 +1,19 @@
+[
+    {
+    
+        "categories": [
+            {
+                "title":"General Knowlege",
+                "image":"http://localhost:3000/images/general"
+            },
+            {
+                "title":"Memorie",
+                "image":"http://localhost:3000/images/game"
+            },
+            {
+                "title":"Mathematic",
+                "image":"http://localhost:3000/images/mathematic"
+            }
+        ]
+    }
+]

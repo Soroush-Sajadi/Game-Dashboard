@@ -1,15 +1,29 @@
 .login-wraper-open {
     float: right;
     width: 80%;
+    text-align: center;
+    margin-top: 10%;
   }
   .login-wraper-close {
     float: right;
     width: 94%;
+    text-align: center;
+    margin-top: 10%;
+
   }
   .login-wraper-close {
     animation-duration: 2s;
     animation-name: slideinLog;
   }
+  .login {
+    border-top: none;
+    border-right: none ;
+    border-left: none;
+    width: 50%;
+  }
+  ::-webkit-input-placeholder {
+    text-align: center;
+ }
   @keyframes slideinLog {
     from {
       width: 80%; 

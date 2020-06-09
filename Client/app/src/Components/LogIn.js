@@ -4,7 +4,7 @@ import './LogIn.css'
 function LogIn ({ sideBarState }) {
   return (
     <div className={ sideBarState ? 'login-wraper-open': 'login-wraper-close'}>
-      Here is LogIn
+     <input className="login" type="text" placeholder="Name " />
     </div>
   )
 

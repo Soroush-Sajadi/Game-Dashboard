@@ -6,14 +6,18 @@
   display: flex;
   flex-direction: column;
   margin-top: 40px;
+  border-bottom-right-radius: 5px ;
+  border-top-right-radius: 5px ;
 }
 .side-bar-in {
   height: 440px;
   width: 3%;
-  background-color: black;
+  background-color: white;
   display: flex;
   flex-direction: column;
   margin-top: 40px;
+  border-bottom-right-radius: 5px ;
+  border-top-right-radius: 5px ;
 }
  ul {
   color: aliceblue;
@@ -49,10 +53,14 @@ li:hover {
 .sideBar-closeIcon {
   width: 100%;
 }
+.sideBar-Route {
+  margin-left: -17px;
+}
 .side-bar-in {
   animation-duration: 2s;
   animation-name: slidein;
 }
+
 @keyframes slidein {
   from {
     width: 18%; 
@@ -73,5 +81,59 @@ li:hover {
 
   to {
     width: 18%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .side-bar {
+    height: 440px;
+    width: 0%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    border-bottom-right-radius: 5px ;
+    border-top-right-radius: 5px ;
+  }
+  .side-bar-in {
+    height: 440px;
+    width: 0%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    border-bottom-right-radius: 5px ;
+    border-top-right-radius: 5px ;
+  }
+  
+  .side-bar {
+    animation-duration: 2s;
+    animation-name: slidein;
+  }
+  
+  @keyframes slidein {
+    from {
+      width: 18%; 
+    }
+  
+    to {
+      width: 0%;
+    }
+  }
+  .side-bar-in {
+    animation-duration: 2s;
+    animation-name: slidein;
+  }
+  
+  @keyframes slidein {
+    from {
+      width: 3%; 
+    }
+  
+    to {
+      width: 0%;
+    }
+  }
+  .closeIcon {
+    display: none ;
   }
 }
