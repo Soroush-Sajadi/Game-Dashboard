@@ -1,0 +1,25 @@
+.account-wraper-open {
+    float: right;
+    width: 80%;
+  }
+  .account-wraper-close {
+    float: right;
+    width: 94%;
+  }
+  .account-wraper-close {
+    animation-duration: 2s;
+    animation-name: slideinaccount;
+  }
+  .account-wraper {
+      text-align: center;
+  }
+  @keyframes slideinaccount {
+    from {
+      width: 80%; 
+    }
+  
+    to {
+      width: 94%;
+    }
+  }
+  

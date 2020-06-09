@@ -7,6 +7,7 @@ import Home from './Components/Home';
 import Setting from './Components/Setting';
 import LogIn from './Components/LogIn';
 import NavBar from './Components/NavBar';
+import CreateAccount from './Components/CreateAccount';
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -23,6 +24,7 @@ function App() {
   const removeUser = (childData) => {
     setUser(childData);
   }
+  console.log(user)
   return (
     <div className="App">
       <BrowserRouter>
@@ -32,7 +34,8 @@ function App() {
               <Switch>
                 <Route exact path="/" render={() => <Home sideBarState={isOpen} />}/>
                 <Route exact path="/setting" render={() => <Setting sideBarState={isOpen} />}/>
-                <Route path="/login" render={() => <LogIn sideBarState={isOpen} getUser={getUser}/>}/>
+                <Route exact path="/login" render={() => <LogIn sideBarState={isOpen} getUser={getUser}/>}/>
+                <Route path="/login/account" render={() => <CreateAccount sideBarState={isOpen} />} />
               </Switch>
             </div>
             <div className="side-bar-app">

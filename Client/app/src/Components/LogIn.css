@@ -11,6 +11,10 @@
     margin-top: 10%;
 
   }
+  .login-wraper {
+    flex-direction: column;
+    text-align: center;
+  }
   .login-wraper-close {
     animation-duration: 2s;
     animation-name: slideinLog;
@@ -20,6 +24,7 @@
     border-right: none ;
     border-left: none;
     width: 50%;
+    margin-top: 25px;
   }
   ::-webkit-input-placeholder {
     text-align: center;
