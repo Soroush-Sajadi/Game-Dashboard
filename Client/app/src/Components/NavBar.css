@@ -8,3 +8,7 @@
   margin: 3px;
   cursor: pointer;
 }
+
+.navBar p {
+  float: right;
+}

@@ -5,9 +5,10 @@ import iconHome from '../Images/iconsHome.svg';
 import iconSetting from '../Images/iconSettings.svg';
 import logIn from '../Images/login.svg';
 import openMenu from '../Images/openMenu.svg';
+import logOut from '../Images/logout.svg';
 import './SideBar.css'
 
-function SideBar({toggleToApp})  {
+function SideBar({ toggleToApp, userName, removeUser })  {
   // Declare a new state variable, which we'll call "count"
   const [isOpen, setIsOpen] = useState(true);
 
@@ -15,7 +16,9 @@ function SideBar({toggleToApp})  {
     setIsOpen(isOpen => !isOpen);
     toggleToApp(isOpen);
   }
-
+  const logOutUser = () => {
+    removeUser(null);
+  }
   return (
     <>
     <div className={isOpen ? 'side-bar': 'side-bar-in'}>
@@ -27,19 +30,19 @@ function SideBar({toggleToApp})  {
           <NavLink to="/" style={{ textDecoration: 'none', color: 'white' }}>
             <li>
               <img src={iconHome}/>
-              Home
+              <p>Home</p>
             </li>  
           </NavLink>
           <NavLink to="/setting" style={{ textDecoration: 'none', color: 'white' }}>
             <li>
               <img src={iconSetting}/>
-              Settings
+              <p>Settings</p>
             </li>
           </NavLink>
           <NavLink to="/login" style={{ textDecoration: 'none', color: 'white' }}>
             <li>
-              <img src={logIn} />
-              Log In
+              <img src={userName === null ? logIn: logOut} onClick={logOutUser} />
+              {userName === null ? <p>Log In</p> : <p>Log Out</p>}
             </li>
           </NavLink>
         </ul>

@@ -10,25 +10,33 @@ import NavBar from './Components/NavBar';
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
+  const [user, setUser] = useState(null);
 
   const toggle = (childData) => {
     setIsOpen(!childData);
   }
- 
+
+  const getUser = (childData) => {
+    setUser(childData);
+  }
+
+  const removeUser = (childData) => {
+    setUser(childData);
+  }
   return (
     <div className="App">
       <BrowserRouter>
-          <NavBar />
+          <NavBar userName={user} />
           <div className="app-wraper">
             <div className="route-app">
               <Switch>
                 <Route exact path="/" render={() => <Home sideBarState={isOpen} />}/>
                 <Route exact path="/setting" render={() => <Setting sideBarState={isOpen} />}/>
-                <Route path="/login" render={() => <LogIn sideBarState={isOpen}/>}/>
+                <Route path="/login" render={() => <LogIn sideBarState={isOpen} getUser={getUser}/>}/>
               </Switch>
             </div>
             <div className="side-bar-app">
-              <SideBar toggleToApp={toggle} />
+              <SideBar toggleToApp={toggle} userName={user} removeUser={removeUser} />
             </div>
           </div>
       </BrowserRouter>
