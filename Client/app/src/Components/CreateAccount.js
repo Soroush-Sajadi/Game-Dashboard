@@ -49,7 +49,7 @@ function CreateAccount ({ sideBarState }) {
     <div className={ sideBarState ? 'account-wraper-open': 'account-wraper-close' }>
       <div className="account-wraper">
       {error !== '' ? <h3>{error}</h3>: null}
-        <input className="login" type="text" name="userName" value={userInput.userName} placeholder="User Name" onChange={handleChange}  />
+        <input className="login" type="text" name="userName" value={userInput.userName} placeholder="Username" onChange={handleChange}  />
         <input className="login" type="text" name="email" value={userInput.email} placeholder="Email" onChange={handleChange} />
         <input className="login" type="text" name="emailSecond" value={userInput.emailSecond} placeholder="Repeat Email" onChange={handleChange} />
       </div>

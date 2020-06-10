@@ -10,6 +10,8 @@ const accounts = require('./DB/accounts.json')
 const dir = path.join(__dirname, '/Images/');
 imagesName=['game', 'general', 'mathematic'];
 const { varifyAccount } = require('./Helper_Functions/varify')
+const { logIn } = require('./Helper_Functions/login')
+
 
 
 
@@ -33,7 +35,9 @@ app.get('/accounts/:username/:email', async (req, res) => {
   if (varifyAccount(accounts[0].accounts, req.params.username, req.params.email )) {
     res.json(false);
   } else {
-    res.json(true)
+    const score = logIn(accounts[0].accounts, req.params.username, req.params.email)
+    console.log(score)
+    res.json([true, score])
   }
 })
 

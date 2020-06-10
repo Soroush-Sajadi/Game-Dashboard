@@ -10,8 +10,9 @@ import NavBar from './Components/NavBar';
 import CreateAccount from './Components/CreateAccount';
 
 function App() {
-  const [isOpen, setIsOpen] = useState(true);
-  const [user, setUser] = useState(null);
+  const [ isOpen, setIsOpen ] = useState(true);
+  const [ user, setUser ] = useState(null);
+  const [ score, setScore ] = useState(null);
 
   const toggle = (childData) => {
     setIsOpen(!childData);
@@ -24,22 +25,29 @@ function App() {
   const removeUser = (childData) => {
     setUser(childData);
   }
-  console.log(user)
+
+  const getScore = (childData) => {
+    setScore(childData);
+  }
+
+  const removeScore = (childData) => {
+    setScore(childData)
+  }
   return (
     <div className="App">
       <BrowserRouter>
-          <NavBar userName={user} />
+          <NavBar userName={user} userScore={score}/>
           <div className="app-wraper">
             <div className="route-app">
               <Switch>
                 <Route exact path="/" render={() => <Home sideBarState={isOpen} />}/>
                 <Route exact path="/setting" render={() => <Setting sideBarState={isOpen} />}/>
-                <Route exact path="/login" render={() => <LogIn sideBarState={isOpen} getUser={getUser}/>}/>
+                <Route exact path="/login" render={() => <LogIn sideBarState={isOpen} getUser={getUser} getScore={getScore}/>}/>
                 <Route path="/login/account" render={() => <CreateAccount sideBarState={isOpen} />} />
               </Switch>
             </div>
             <div className="side-bar-app">
-              <SideBar toggleToApp={toggle} userName={user} removeUser={removeUser} />
+              <SideBar toggleToApp={toggle} userName={user} removeUser={removeUser} removeScore={removeScore} />
             </div>
           </div>
       </BrowserRouter>

@@ -8,7 +8,7 @@ import openMenu from '../Images/openMenu.svg';
 import logOut from '../Images/logout.svg';
 import './SideBar.css'
 
-function SideBar({ toggleToApp, userName, removeUser })  {
+function SideBar({ toggleToApp, userName, removeUser, removeScore })  {
   // Declare a new state variable, which we'll call "count"
   const [isOpen, setIsOpen] = useState(true);
 
@@ -16,9 +16,12 @@ function SideBar({ toggleToApp, userName, removeUser })  {
     setIsOpen(isOpen => !isOpen);
     toggleToApp(isOpen);
   }
+
   const logOutUser = () => {
     removeUser(null);
+    removeScore(null);
   }
+  
   return (
     <>
     <div className={isOpen ? 'side-bar': 'side-bar-in'}>

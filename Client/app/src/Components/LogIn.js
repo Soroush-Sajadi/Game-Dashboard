@@ -2,7 +2,7 @@ import React, {useState, useEffect, useReducer} from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import './LogIn.css'
 
-function LogIn ({ sideBarState, getUser }) {
+function LogIn ({ sideBarState, getUser, getScore }) {
   const [user, setUser] = useReducer(
     (state, newState) => ({...state, ...newState}),
     {
@@ -18,10 +18,18 @@ function LogIn ({ sideBarState, getUser }) {
     setUser({[name]: newValue});
   }
 
+  const saveToLocalStorage = (name, data) => {
+    window.localStorage.setItem(name, JSON.stringify(data))
+  }
+
+
   const getLogIn  = async () => {
     await fetch(`http://localhost:3000/accounts/${user.userName}/${user.email}`)
       .then(res => res.json())
-      .then(res => res === true ? getUser(user.userName) : setMessegeFromDataBase(res))
+      .then(data => data[0] === true ? 
+        getUser(user.userName) || getScore(data[1]) || 
+        saveToLocalStorage( 'username', user.userName ) || saveToLocalStorage( 'score', data[1] ) 
+        : setMessegeFromDataBase(data))
   }
 
   useEffect(() => {
@@ -39,11 +47,8 @@ function LogIn ({ sideBarState, getUser }) {
           <p>Create an acount</p>
         </NavLink>
         {messageFromDataBase === false ? <h3>Email or Username is wrong</h3>: null}
-
-
     </div>
   )
-
 }
 
 export default LogIn;
