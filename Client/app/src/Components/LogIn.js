@@ -21,7 +21,7 @@ function LogIn ({ sideBarState, getUser }) {
   const getLogIn  = async () => {
     await fetch(`http://localhost:3000/accounts/${user.userName}/${user.email}`)
       .then(res => res.json())
-      .then(res => setMessegeFromDataBase(res));
+      .then(res => res === true ? getUser(user.userName) : setMessegeFromDataBase(res))
   }
 
   useEffect(() => {
@@ -33,12 +33,12 @@ function LogIn ({ sideBarState, getUser }) {
         <input className="login" type="text" name="userName" value={user.userName} placeholder="Username" onChange={ handleChange } />
         <input className="login" type="text" name="email" value={user.email} placeholder="Email" onChange={ handleChange } />
       </div>
-        <input className="submit" type="submit" onClick={getLogIn} />
+        <input className="submit" type="submit"
+          onClick={getLogIn} />
         <NavLink to="login/account">
           <p>Create an acount</p>
         </NavLink>
-        {messageFromDataBase === 'false' ? <h3>Email or Username is wrong</h3>: null}
-        {messageFromDataBase === 'true' ? <Redirect to="/"></Redirect>: null}
+        {messageFromDataBase === false ? <h3>Email or Username is wrong</h3>: null}
 
 
     </div>

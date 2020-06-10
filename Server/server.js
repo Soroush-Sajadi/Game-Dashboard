@@ -31,9 +31,9 @@ app.get('accounts', (req, res) => {
 
 app.get('/accounts/:username/:email', async (req, res) => {
   if (varifyAccount(accounts[0].accounts, req.params.username, req.params.email )) {
-    res.json('false');
+    res.json(false);
   } else {
-    res.json('true')
+    res.json(true)
   }
 })
 
