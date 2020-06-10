@@ -8,8 +8,8 @@ function navBar ({userName}) {
     <>  
       <NavLink to='/login'>
         <div className="navBar">
-            <p>{userName}</p>
-            <img src={user}/>
+          <img src={user}/>
+          <p>{userName}</p>
         </div>
       </NavLink>
     </>

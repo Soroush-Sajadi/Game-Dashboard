@@ -48,12 +48,13 @@ function CreateAccount ({ sideBarState }) {
   return (
     <div className={ sideBarState ? 'account-wraper-open': 'account-wraper-close' }>
       <div className="account-wraper">
+      {error !== '' ? <h3>{error}</h3>: null}
         <input className="login" type="text" name="userName" value={userInput.userName} placeholder="User Name" onChange={handleChange}  />
         <input className="login" type="text" name="email" value={userInput.email} placeholder="Email" onChange={handleChange} />
         <input className="login" type="text" name="emailSecond" value={userInput.emailSecond} placeholder="Repeat Email" onChange={handleChange} />
       </div>
         <input className="submit" type="submit" onClick={fetchData}  />
-        {error !== '' ? <h3>{error}</h3>: null}
+        
         {messeageFromDataBase === 'Email or user name is already taken' ? <h3>{messeageFromDataBase}</h3>: null}
         {messeageFromDataBase === 'Your account is succesesfully made!'? <Redirect to="/login"></Redirect>: null}
     </div>

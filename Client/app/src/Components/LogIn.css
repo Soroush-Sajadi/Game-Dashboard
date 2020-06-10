@@ -3,21 +3,21 @@
     width: 80%;
     text-align: center;
     margin-top: 10%;
+    animation-duration: 2s;
+    animation-name: slideoutLog;
   }
   .login-wraper-close {
     float: right;
     width: 94%;
     text-align: center;
     margin-top: 10%;
+    animation-duration: 2s;
+    animation-name: slideinLog;
 
   }
   .login-wraper {
     flex-direction: column;
     text-align: center;
-  }
-  .login-wraper-close {
-    animation-duration: 2s;
-    animation-name: slideinLog;
   }
   .login {
     border-top: none;
@@ -38,4 +38,13 @@
       width: 94%;
     }
   }
+  /*@keyframes slideoutLog {
+    from {
+      width: 94%; 
+    }
+  
+    to {
+      width: 80%;
+    }
+  }*/
   

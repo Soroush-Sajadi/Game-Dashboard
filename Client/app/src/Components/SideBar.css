@@ -12,7 +12,7 @@
 .side-bar-in {
   height: 440px;
   width: 3%;
-  background-color: white;
+  background-color: black;
   display: flex;
   flex-direction: column;
   margin-top: 40px;
