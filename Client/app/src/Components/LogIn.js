@@ -31,10 +31,7 @@ function LogIn ({ sideBarState, getUser, getScore }) {
         saveToLocalStorage( 'username', user.userName ) || saveToLocalStorage( 'score', data[1] ) 
         : setMessegeFromDataBase(data))
   }
-
-  useEffect(() => {
-    getLogIn();
-  }, [])
+  
   return (
     <div className={ sideBarState ? 'login-wraper-open': 'login-wraper-close'}>
       <div className="login-wraper">

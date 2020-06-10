@@ -9,8 +9,16 @@ import logOut from '../Images/logout.svg';
 import './SideBar.css'
 
 function SideBar({ toggleToApp, userName, removeUser, removeScore })  {
-  // Declare a new state variable, which we'll call "count"
   const [isOpen, setIsOpen] = useState(true);
+  const [username, setUsername] = useState(null);
+
+  const getUsername = (name) => {
+    setUsername(JSON.parse(window.localStorage.getItem(name)));
+  }
+
+  const removeFromLocalStorage = (name) => {
+    window.localStorage.removeItem(name);
+  }
 
   const toggle = () => {
     setIsOpen(isOpen => !isOpen);
@@ -20,8 +28,16 @@ function SideBar({ toggleToApp, userName, removeUser, removeScore })  {
   const logOutUser = () => {
     removeUser(null);
     removeScore(null);
+    removeFromLocalStorage('username');
+    removeFromLocalStorage('score');
   }
-  
+
+  useEffect(() => {
+    getUsername('username')
+  },[])
+
+
+
   return (
     <>
     <div className={isOpen ? 'side-bar': 'side-bar-in'}>
@@ -43,9 +59,9 @@ function SideBar({ toggleToApp, userName, removeUser, removeScore })  {
             </li>
           </NavLink>
           <NavLink to="/login" style={{ textDecoration: 'none', color: 'white' }}>
-            <li>
-              <img src={userName === null ? logIn: logOut} onClick={logOutUser} />
-              {userName === null ? <p>Log In</p> : <p>Log Out</p>}
+            <li onClick={logOutUser}>
+              <img src={(userName === null && username === null) ? logIn: logOut}  />
+              {(userName === null && username === null) ? <p>Log In</p> : <p>Log Out</p>}
             </li>
           </NavLink>
         </ul>

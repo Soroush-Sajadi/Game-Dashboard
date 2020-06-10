@@ -25,14 +25,13 @@ function NavBar ({ userName, userScore }) {
       <NavLink to='/login'>
         <div className="navBar">
           <img src={user}/>
-          { userScore === null ? <p className="score">Score: {score}</p>: <p className="score">Score: {userScore}</p> }
+          { userScore === null ? <p className="score">{score}</p>: <p className="score">{userScore}</p> }
           { userName === null ? <p>{username}</p>: <p> {userName}</p> }
         </div>
       </NavLink>
     </>
   )
 }
-
 
 export default NavBar;
 
