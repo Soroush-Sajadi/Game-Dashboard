@@ -1,40 +1,46 @@
-import React, {useState, useEffect} from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {useState, useEffect, useReducer} from 'react';
+import { NavLink, Redirect } from 'react-router-dom';
 import './LogIn.css'
 
 function LogIn ({ sideBarState, getUser }) {
-  const [user, setUser] = useState(null);
-  const [email, setEmail] = useState(null);
+  const [user, setUser] = useReducer(
+    (state, newState) => ({...state, ...newState}),
+    {
+    userName: '',
+    email: '',
+    }
+  );
+  const [messageFromDataBase, setMessegeFromDataBase] = useState('');
 
-
-  const handleChangeMail = (e) => {
-    setUser(e.target.value);
+  const handleChange = evt => {
+    const name = evt.target.name;
+    const newValue = evt.target.value;
+    setUser({[name]: newValue});
   }
 
-  const handleChangeUserName = (e) => {
-    setEmail(e.target.value)
+  const getLogIn  = async () => {
+    await fetch(`http://localhost:3000/accounts/${user.userName}/${user.email}`)
+      .then(res => res.json())
+      .then(res => setMessegeFromDataBase(res));
   }
 
-  const createAccount = () => {{
-
-  }}
-  
-  const handleKeyDown = (e) => {
-      
-    
-  }
-  console.log(user, email)
-
+  useEffect(() => {
+    getLogIn();
+  }, [])
   return (
     <div className={ sideBarState ? 'login-wraper-open': 'login-wraper-close'}>
       <div className="login-wraper">
-        <input className="login" type="text" placeholder="User Name" onChange={handleChangeMail}  />
-        <input className="login" type="text" placeholder="Email" onChange={handleChangeUserName} />
+        <input className="login" type="text" name="userName" value={user.userName} placeholder="Username" onChange={ handleChange } />
+        <input className="login" type="text" name="email" value={user.email} placeholder="Email" onChange={ handleChange } />
       </div>
-        <input className="submit" type="submit" onClick={handleKeyDown} />
+        <input className="submit" type="submit" onClick={getLogIn} />
         <NavLink to="login/account">
-          <p onClick={createAccount}>Create an acount</p>
+          <p>Create an acount</p>
         </NavLink>
+        {messageFromDataBase === 'false' ? <h3>Email or Username is wrong</h3>: null}
+        {messageFromDataBase === 'true' ? <Redirect to="/"></Redirect>: null}
+
+
     </div>
   )
 

@@ -9,6 +9,10 @@ const categories = require('./DB/categories.json')
 const accounts = require('./DB/accounts.json')
 const dir = path.join(__dirname, '/Images/');
 imagesName=['game', 'general', 'mathematic'];
+const { varifyAccount } = require('./Helper_Functions/varify')
+
+
+
 
 
 app.use(cors());
@@ -21,16 +25,30 @@ app.get('/' , (req, res) => {
     res.json(categories);
 })
 
+app.get('accounts', (req, res) => {
+  res.json(accounts);
+})
+
+app.get('/accounts/:username/:email', async (req, res) => {
+  if (varifyAccount(accounts[0].accounts, req.params.username, req.params.email )) {
+    res.json('false');
+  } else {
+    res.json('true')
+  }
+})
+
 app.post('/accounts', async(req, res) => {
+  if ( varifyAccount(accounts[0].accounts, req.body.userName, req.body.email)) {
     await accounts[0].accounts.push({ "user_name": `${req.body.userName}`, "email": `${req.body.email}`, score: "0" })
     fs.writeFile(`${__dirname}/DB/accounts.json`,JSON.stringify(accounts), (err, result) => {
-        if(err) console.log('error', err);
-    });
-    res.json(accounts)
+    if(err) console.log('error', err);
+  });
+    res.json('Your account is succesesfully made!')
+  } else {
+      res.json('Email or user name is already taken');
+  }
 })
-app.get('/accounts', async(req, res) => {
-    res.json(accounts)
-})
+
 imagesName.map(item => app.get(`/images/${item}`, (req, res) => {
     res.sendFile(`${dir}/${item}.jpg`);
     }));
