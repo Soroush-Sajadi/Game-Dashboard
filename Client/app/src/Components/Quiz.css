@@ -20,7 +20,8 @@
     height: 35%;
     border-bottom: 1px solid black;
   }
-  .answers {
+  .answers li {
+    color: black;
   }
   @keyframes slideinQuiz{
     from {
