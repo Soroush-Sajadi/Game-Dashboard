@@ -13,6 +13,7 @@ imagesName=['game', 'generalknowledge', 'mathematic'];
 const { varifyAccount } = require('./Helper_Functions/varify')
 const { logIn } = require('./Helper_Functions/login')
 const { randomQuestions } = require('./Helper_Functions/randomQuestions')
+const { updateScore } = require('./Helper_Functions/updatingScore');
 
 
 
@@ -35,10 +36,10 @@ app.get('accounts', (req, res) => {
 })
 
 app.get('/accounts/:username/:email', async (req, res) => {
-  if (varifyAccount(accounts[0].accounts, req.params.username, req.params.email )) {
+  if (varifyAccount(accounts, req.params.username, req.params.email )) {
     res.json(false);
   } else {
-    const score = logIn(accounts[0].accounts, req.params.username, req.params.email)
+    const score = logIn(accounts, req.params.username, req.params.email)
     console.log(score)
     res.json([true, score])
   }
@@ -49,9 +50,13 @@ app.get('/generalknowledge', (req, res) => {
   res.json(questions);
 })
 
+app.get('/score/:username/:score', (req, res) => {
+  updateScore( accounts, req.params.username, req.params.score );
+})
+
 app.post('/accounts', async(req, res) => {
-  if ( varifyAccount(accounts[0].accounts, req.body.userName, req.body.email)) {
-    await accounts[0].accounts.push({ "user_name": `${req.body.userName}`, "email": `${req.body.email}`, score: "0" })
+  if ( varifyAccount(accounts, req.body.userName, req.body.email)) {
+    await accounts.push({ "user_name": `${req.body.userName}`, "email": `${req.body.email}`, score: 0 })
     fs.writeFile(`${__dirname}/DB/accounts.json`,JSON.stringify(accounts), (err, result) => {
     if(err) console.log('error', err);
   });

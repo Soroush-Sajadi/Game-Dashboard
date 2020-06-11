@@ -30,7 +30,7 @@ function App() {
   }
 
   const getScore = (childData) => {
-    setScore(childData);
+    setScore(childData + score);
   }
 
   const removeScore = (childData) => {
@@ -51,7 +51,7 @@ function App() {
                 <Route exact path="/setting" render={() => <Setting sideBarState={isOpen} />}/>
                 <Route exact path="/login" render={() => <LogIn sideBarState={isOpen} getUser={getUser} getScore={getScore}/>}/>
                 <Route path="/login/account" render={() => <CreateAccount sideBarState={isOpen} />} />
-                <Route path="/quiz" render={() => <Quiz sideBarState={isOpen} category={category} />} />
+                <Route path="/quiz" render={() => <Quiz sideBarState={isOpen} category={category} getScore={getScore} />} />
                 <Route path="/memory" render={() => <Memory sideBarState={isOpen} />} />
 
               </Switch>

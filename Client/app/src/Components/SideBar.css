@@ -19,13 +19,13 @@
   border-bottom-right-radius: 5px ;
   border-top-right-radius: 5px ;
 }
- ul {
+.sideBar-Route ul {
   color: aliceblue;
   list-style-type: none;
   margin-right: 28px;
 
 }
-li {
+.sideBar-Route li {
   border-bottom: 1px solid white;
   text-align: center;
   margin: 20px;

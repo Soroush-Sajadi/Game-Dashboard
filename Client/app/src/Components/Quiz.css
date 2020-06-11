@@ -12,16 +12,35 @@
   }
   .questions-wraper {
     text-align: center;
-    border: 1px solid black;
-    margin: 0 30%;
-    height: 300px;
+    margin: 0px 17%;
+    height: 435px;
   }
   .question {
-    height: 35%;
+    height: 15%;
     border-bottom: 1px solid black;
   }
-  .answers li {
-    color: black;
+
+  .question h4 {
+    margin-top: 20px;
+  }
+  .answers  {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    height: 59%;
+  }
+  .answer {
+    margin: 12px 14%;
+    height: 40px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    border: 2px solid blueviolet
+
+  }
+  .questions-number {
+    float: left;
+    position: absolute;
   }
   @keyframes slideinQuiz{
     from {
