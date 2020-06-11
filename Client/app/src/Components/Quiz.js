@@ -3,6 +3,8 @@ import './Quiz.css'
 
 function Quiz ({ sideBarState, category }) {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState('Loading');
+  let [nextQuestion, setNextQuestion] = useState(0)
 
   const getData = async() => {
     const res = await fetch(`http://localhost:3000/generalknowledge`);
@@ -15,18 +17,25 @@ function Quiz ({ sideBarState, category }) {
     getData()
   },[]);
 
+  const getNextQuestion = () => {
+    setNextQuestion( nextQuestion += 1);
+  }
+
+console.log(data)
   return (
     <div className={ sideBarState ? 'quiz-wraper-open': 'quiz-wraper-close' }>
+      {data.length === 0 ? <h3>{loading}</h3>:
       <div className="questions-wraper">
         <div className="question">
-            <h3>Question!</h3>
+          <h3>{data[nextQuestion].map(item => item.question)}</h3>
         </div>
-        <div className="answers">
-          <h5>a1</h5>
-          <h5>a12</h5>
-          <h5>a13</h5>
+        <div className="answers"> 
+         
+          {data[nextQuestion].map(item => item.answers.map(item => <h5 onClick={getNextQuestion}>{item}</h5>))}
+          
         </div>
       </div>
+      }
     </div>
   )
 
