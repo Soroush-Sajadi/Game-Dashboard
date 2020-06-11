@@ -18,7 +18,7 @@ function Quiz ({ sideBarState, category }) {
   },[]);
 
   const getNextQuestion = () => {
-    setNextQuestion( nextQuestion += 1);
+    return nextQuestion + 1 !== data.length ? setNextQuestion( nextQuestion += 1) : null;
   }
 
 console.log(data)
