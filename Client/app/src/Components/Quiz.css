@@ -1,0 +1,34 @@
+.quiz-wraper-open {
+    float: right;
+    width: 80%;
+  }
+  .quiz-wraper-close {
+    float: right;
+    width: 94%;
+  }
+  .quiz-wraper-close {
+    animation-duration: 2s;
+    animation-name: slideinQuiz;
+  }
+  .questions-wraper {
+    text-align: center;
+    border: 1px solid black;
+    margin: 0 30%;
+    height: 300px;
+  }
+  .question {
+    height: 35%;
+    border-bottom: 1px solid black;
+  }
+  .answers {
+  }
+  @keyframes slideinQuiz{
+    from {
+      width: 80%; 
+    }
+  
+    to {
+      width: 94%;
+    }
+  }
+  

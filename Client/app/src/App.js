@@ -8,11 +8,14 @@ import Setting from './Components/Setting';
 import LogIn from './Components/LogIn';
 import NavBar from './Components/NavBar';
 import CreateAccount from './Components/CreateAccount';
+import Quiz from './Components/Quiz';
+import Memory from  './Components/Memory';
 
 function App() {
   const [ isOpen, setIsOpen ] = useState(true);
   const [ user, setUser ] = useState(null);
   const [ score, setScore ] = useState(null);
+  const [category, setCategory] = useState(null);
 
   const toggle = (childData) => {
     setIsOpen(!childData);
@@ -33,6 +36,10 @@ function App() {
   const removeScore = (childData) => {
     setScore(childData)
   }
+
+  const getCategory = (childData) => {
+    setCategory(childData);
+  }
   return (
     <div className="App">
       <BrowserRouter>
@@ -40,10 +47,13 @@ function App() {
           <div className="app-wraper">
             <div className="route-app">
               <Switch>
-                <Route exact path="/" render={() => <Home sideBarState={isOpen} />}/>
+                <Route exact path="/" render={() => <Home sideBarState={isOpen} getCategory={getCategory} />}/>
                 <Route exact path="/setting" render={() => <Setting sideBarState={isOpen} />}/>
                 <Route exact path="/login" render={() => <LogIn sideBarState={isOpen} getUser={getUser} getScore={getScore}/>}/>
                 <Route path="/login/account" render={() => <CreateAccount sideBarState={isOpen} />} />
+                <Route path="/quiz" render={() => <Quiz sideBarState={isOpen} category={category} />} />
+                <Route path="/memory" render={() => <Memory sideBarState={isOpen} />} />
+
               </Switch>
             </div>
             <div className="side-bar-app">

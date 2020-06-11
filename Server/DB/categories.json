@@ -4,7 +4,7 @@
         "categories": [
             {
                 "title":"General Knowlege",
-                "image":"http://localhost:3000/images/general"
+                "image":"http://localhost:3000/images/generalknowledge"
             },
             {
                 "title":"Memorie",

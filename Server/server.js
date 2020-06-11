@@ -5,12 +5,14 @@ const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 require('dotenv').config();
-const categories = require('./DB/categories.json')
+const categories = require('./DB/categories.json');
+const generalQuestions = require('./DB/quiz.json');
 const accounts = require('./DB/accounts.json')
 const dir = path.join(__dirname, '/Images/');
-imagesName=['game', 'general', 'mathematic'];
+imagesName=['game', 'generalknowledge', 'mathematic'];
 const { varifyAccount } = require('./Helper_Functions/varify')
 const { logIn } = require('./Helper_Functions/login')
+const { randomQuestions } = require('./Helper_Functions/randomQuestions')
 
 
 
@@ -24,6 +26,7 @@ app.use(bodyParser.json());
 
 
 app.get('/' , (req, res) => {
+    
     res.json(categories);
 })
 
@@ -39,6 +42,11 @@ app.get('/accounts/:username/:email', async (req, res) => {
     console.log(score)
     res.json([true, score])
   }
+})
+
+app.get('/generalknowledge', (req, res) => {
+  const questions = randomQuestions(generalQuestions.results);
+  res.json(questions);
 })
 
 app.post('/accounts', async(req, res) => {
