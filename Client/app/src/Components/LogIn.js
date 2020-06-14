@@ -26,12 +26,11 @@ function LogIn ({ sideBarState, getUser, getScore }) {
   const getLogIn  = async () => {
     await fetch(`http://localhost:3000/accounts/${user.userName}/${user.email}`)
       .then(res => res.json())
-      .then(data => data[0] === true ? 
+      .then(data => data[0] === true ? setMessegeFromDataBase(data[0]) ||
         getUser(user.userName) || getScore(data[1]) || 
         saveToLocalStorage( 'username', user.userName ) || saveToLocalStorage( 'score', data[1] ) 
         : setMessegeFromDataBase(data))
   }
-  
   return (
     <div className={ sideBarState ? 'login-wraper-open': 'login-wraper-close'}>
       <div className="login-wraper">
@@ -40,10 +39,11 @@ function LogIn ({ sideBarState, getUser, getScore }) {
       </div>
         <input className="submit" type="submit"
           onClick={getLogIn} />
-        <NavLink to="login/account">
+        <NavLink to="login/account" style={{ textDecoration: 'none' }}>
           <p>Create an acount</p>
         </NavLink>
         {messageFromDataBase === false ? <h3>Email or Username is wrong</h3>: null}
+        {messageFromDataBase === true ? <Redirect to="/" />: null}
     </div>
   )
 }

@@ -36,8 +36,8 @@ function Home ({sideBarState, getCategory}) {
         <div className="card-wraper">
           {data[0].categories.map(item => {
           return  <div className="card" onClick={sendCategory}>
-            <NavLink to={item.title !== 'Memorie' ? '/Quiz': '/Memory'}>
-              <p>{item.title}</p>
+            <NavLink to={item.title !== 'Memory' ? '/quiz': '/memory'} style={{ textDecoration: 'none' }}>
+              <p>{ item.title }</p>
               <img allt="as" src ={item.image}/>
             </NavLink>
             </div>

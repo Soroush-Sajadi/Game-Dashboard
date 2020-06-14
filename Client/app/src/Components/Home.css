@@ -1,11 +1,14 @@
+body{
+  font-family: cursive;
+}
 .home-wraper-open {
     float: right;
-    width: 80%;
+    width: 86%;
     text-align: center;
   }
   .home-wraper-close {
     float: right;
-    width: 94%;
+    width: 97%;
     text-align: center;
   }
   .home-wraper-close {
@@ -24,17 +27,21 @@
     text-align: center;
     margin: 5%;
   }
+  .card p {
+    font-family: cursive
+  }
   .card-wraper {
     display: flex;
     text-align: center;
+    margin-left: 10%;
   }
   @keyframes slideinHome {
     from {
-      width: 80%; 
+      width: 86%; 
     }
   
     to {
-      width: 94%;
+      width: 97%;
     }
   }
  

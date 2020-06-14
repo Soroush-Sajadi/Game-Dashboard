@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+import { NavLink } from 'react-router-dom';
 import './Quiz.css'
 
 function Quiz ({ sideBarState, category, getScore }) {
@@ -19,9 +20,9 @@ function Quiz ({ sideBarState, category, getScore }) {
   }
 
   const fetchData = async (username, score) => {
-    const scoreFromLocalStorage = getDataFromLocalStorage('score');
-    saveDataToLocalStorage('score', score + scoreFromLocalStorage );
     if( JSON.parse(window.localStorage.getItem('username')) !== null ) {
+      const scoreFromLocalStorage = getDataFromLocalStorage('score');
+      saveDataToLocalStorage('score', score + scoreFromLocalStorage );
       await getScore( score )
       await fetch(`http://localhost:3000/score/${username}/${score}`)
     }
@@ -89,6 +90,12 @@ function Quiz ({ sideBarState, category, getScore }) {
           </div>
           <div className="final-score">
             <h3>Score: { ( correctAnswer * 10 ) - (( (nextQuestion + 1) - correctAnswer ) * 5 ) }</h3>
+          </div>
+          <div className="score-footer" >
+            <NavLink to="/" style={{ textDecoration: 'none' }}>
+              <h3>New game</h3>
+            </NavLink>
+            
           </div>
         </div>
       }

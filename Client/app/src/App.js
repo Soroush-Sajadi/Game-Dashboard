@@ -15,7 +15,7 @@ function App() {
   const [ isOpen, setIsOpen ] = useState(true);
   const [ user, setUser ] = useState(null);
   const [ score, setScore ] = useState(null);
-  const [category, setCategory] = useState(null);
+  const [category, setCategory ] = useState(null);
 
   const toggle = (childData) => {
     setIsOpen(!childData);

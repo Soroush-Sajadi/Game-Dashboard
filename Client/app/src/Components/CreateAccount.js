@@ -38,7 +38,7 @@ function CreateAccount ({ sideBarState }) {
         setError('Emails are not the same');
       }
     } else {
-      setError('Fill all the blankets')
+      setError('Fill all the blanks')
     }
   }
 

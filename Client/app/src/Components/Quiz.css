@@ -42,6 +42,20 @@
     float: left;
     position: absolute;
   }
+  .score-wraper {
+    text-align: center;
+  }
+  .result li {
+    list-style-type: none;
+  }
+  .score-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .score-footer h3 {
+    font-size: 25px;
+  }
   @keyframes slideinQuiz{
     from {
       width: 86%; 

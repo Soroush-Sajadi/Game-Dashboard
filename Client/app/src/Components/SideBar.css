@@ -26,7 +26,6 @@
 
 }
 .sideBar-Route li {
-  border-bottom: 1px solid white;
   text-align: center;
   margin: 20px;
   display: flex;
@@ -45,10 +44,10 @@
   margin-left: 2px;
 }
 .closeIcon:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
-li:hover {
-  background-color:#625d5d;
+.sideBar-Route li:hover {
+  transform: scale(1.1);
 }
 .sideBar-closeIcon {
   width: 100%;
