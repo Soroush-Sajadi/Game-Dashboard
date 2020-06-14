@@ -1,16 +1,16 @@
 .login-wraper-open {
     float: right;
-    width: 80%;
+    width: 86%;
     text-align: center;
-    margin-top: 10%;
+    margin-top: 100px;
     animation-duration: 2s;
     animation-name: slideoutLog;
   }
   .login-wraper-close {
     float: right;
-    width: 94%;
+    width: 97%;
     text-align: center;
-    margin-top: 10%;
+    margin-top: 100px;
     animation-duration: 2s;
     animation-name: slideinLog;
 
@@ -31,11 +31,11 @@
  }
   @keyframes slideinLog {
     from {
-      width: 80%; 
+      width: 86%; 
     }
   
     to {
-      width: 94%;
+      width: 97%;
     }
   }
   /*@keyframes slideoutLog {

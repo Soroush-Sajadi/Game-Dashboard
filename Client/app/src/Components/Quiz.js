@@ -14,12 +14,13 @@ function Quiz ({ sideBarState, category, getScore }) {
     await getResult(data,evt.target.getAttribute('value'))
     return nextQuestion + 1 !== data.length ? setNextQuestion( nextQuestion += 1) : setQuizIsOver(true) 
     || 
-    fetchData( JSON.parse( window.localStorage.getItem('username')), ( correctAnswer * 10 ) - (( (nextQuestion + 1) - correctAnswer ) * 5 ) )
+    fetchData( getDataFromLocalStorage( 'username' ), ( correctAnswer * 10 ) - (( (nextQuestion + 1) - correctAnswer ) * 5 ) )
     
   }
 
   const fetchData = async (username, score) => {
-    saveToLocalStorage('score', score )
+    const scoreFromLocalStorage = getDataFromLocalStorage('score');
+    saveDataToLocalStorage('score', score + scoreFromLocalStorage );
     if( JSON.parse(window.localStorage.getItem('username')) !== null ) {
       await getScore( score )
       await fetch(`http://localhost:3000/score/${username}/${score}`)
@@ -33,8 +34,12 @@ function Quiz ({ sideBarState, category, getScore }) {
       }
     })
   }
-  const saveToLocalStorage = (name, data) => {
+  const saveDataToLocalStorage = (name, data) => {
     window.localStorage.setItem(name, JSON.stringify(data))
+  }
+
+  const getDataFromLocalStorage = (name) => {
+    return JSON.parse(window.localStorage.getItem(name));
   }
 
   const getData = async() => {

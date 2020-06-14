@@ -1,7 +1,7 @@
 
 .side-bar {
   height: 440px;
-  width: 18%;
+  width: 14%;
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -63,7 +63,7 @@ li:hover {
 
 @keyframes slidein {
   from {
-    width: 18%; 
+    width: 14%; 
   }
 
   to {
@@ -80,7 +80,7 @@ li:hover {
   }
 
   to {
-    width: 18%;
+    width: 14%;
   }
 }
 @media screen and (max-width: 800px) {
@@ -112,7 +112,7 @@ li:hover {
   
   @keyframes slidein {
     from {
-      width: 18%; 
+      width: 14%; 
     }
   
     to {
