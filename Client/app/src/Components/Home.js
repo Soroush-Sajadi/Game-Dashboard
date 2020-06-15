@@ -52,5 +52,3 @@ function Home ({sideBarState, getCategory}) {
 export default Home;
 
 
-
-  

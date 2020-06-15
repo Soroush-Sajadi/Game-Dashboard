@@ -1,9 +1,17 @@
-.memory-img {
+
+
+.flip-card {
+    background-color: transparent;
     width: 120px;
     height: 100px;
-    margin: 8px;
 }
-.memory-wraper {
+.flip-card img {
+    margin: 5%;
+}
+.card-wrap {
     display: flex;
     flex-wrap: wrap;
+    
 }
+  
+  
