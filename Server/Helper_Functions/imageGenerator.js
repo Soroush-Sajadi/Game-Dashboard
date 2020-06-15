@@ -5,8 +5,13 @@ const shuffle = (arr) => {
   }
   return arr;
 } 
-  
 
+const addId = (arr) => {
+  for (let i = 0; i < arr.length; i += 1) {
+    arr[i][0].id = i + 1;
+  } 
+  return arr;
+}
 
 const generatorImage = (arr) => {
   let images = []
@@ -14,7 +19,8 @@ const generatorImage = (arr) => {
     images.push( arr[i] );
     images.push( arr[i] );
   }
-  return shuffle (images) 
+
+  return addId( shuffle (images)) 
 }
 
 module.exports.generatorImage = generatorImage;
