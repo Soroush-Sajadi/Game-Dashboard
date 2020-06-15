@@ -7,13 +7,15 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 const categories = require('./DB/categories.json');
 const generalQuestions = require('./DB/quiz.json');
+const images = require('./DB/images.json');
 const accounts = require('./DB/accounts.json')
 const dir = path.join(__dirname, '/Images/');
 imagesName=['game', 'generalknowledge', 'mathematic'];
-const { varifyAccount } = require('./Helper_Functions/varify')
-const { logIn } = require('./Helper_Functions/login')
-const { randomQuestions } = require('./Helper_Functions/randomQuestions')
-const { updateScore } = require('./Helper_Functions/updatingScore');
+const { varifyAccount } = require( './Helper_Functions/varify' )
+const { logIn } = require( './Helper_Functions/login' )
+const { randomQuestions } = require( './Helper_Functions/randomQuestions' )
+const { updateScore } = require( './Helper_Functions/updatingScore' );
+const { generatorImage } = require( './Helper_Functions/imageGenerator' )
 
 
 
@@ -27,7 +29,6 @@ app.use(bodyParser.json());
 
 
 app.get('/' , (req, res) => {
-    
     res.json(categories);
 })
 
@@ -48,6 +49,11 @@ app.get('/accounts/:username/:email', async (req, res) => {
 app.get('/generalknowledge', (req, res) => {
   const questions = randomQuestions(generalQuestions.results);
   res.json(questions);
+})
+
+app.get('/memory', async ( req, res ) => {
+  const imagesDB = await generatorImage(images.images);
+  res.json(imagesDB);
 })
 
 app.get('/score/:username/:score', (req, res) => {

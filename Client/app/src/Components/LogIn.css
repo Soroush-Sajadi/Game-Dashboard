@@ -5,7 +5,9 @@
     margin-top: 100px;
     animation-duration: 2s;
     animation-name: slideoutLog;
+    
   }
+  
   .login-wraper-close {
     float: right;
     width: 97%;
@@ -19,16 +21,29 @@
     flex-direction: column;
     text-align: center;
   }
+  .login-wraper input:focus {
+    outline: none;
+    border-bottom: 2px solid #379fef;
+    
+    transition: 0.2s;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+  }
   .login {
     border-top: none;
     border-right: none ;
     border-left: none;
+    height: 35px;
     width: 50%;
     margin-top: 25px;
   }
   ::-webkit-input-placeholder {
     text-align: center;
  }
+ ::-webkit-input-placeholder:focus {
+  text-align: right;
+}
   @keyframes slideinLog {
     from {
       width: 86%; 

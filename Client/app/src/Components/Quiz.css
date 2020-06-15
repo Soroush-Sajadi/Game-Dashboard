@@ -56,6 +56,12 @@
   .score-footer h3 {
     font-size: 25px;
   }
+  .answer:focus {
+    outline: none;
+  }
+  .answer:hover {
+    transform: scale(1.04);
+  }
   @keyframes slideinQuiz{
     from {
       width: 86%; 

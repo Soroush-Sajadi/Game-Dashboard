@@ -30,7 +30,7 @@ function Home ({sideBarState, getCategory}) {
 
   return (
     <div className={sideBarState ? 'home-wraper-open':'home-wraper-close'}>
-      <h3 className="title">Choose  your favorite category!</h3>
+      <h3 className="title">Choose your favorite category</h3>
       {data.length === 0 ? 
         <h3>{loading}</h3>:
         <div className="card-wraper">

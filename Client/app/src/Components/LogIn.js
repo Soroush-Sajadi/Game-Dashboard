@@ -47,7 +47,6 @@ function LogIn ({ sideBarState, getUser, getScore }) {
     </div>
   )
 }
-
 export default LogIn;
 
 

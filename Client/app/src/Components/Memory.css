@@ -1,0 +1,9 @@
+.memory-img {
+    width: 120px;
+    height: 100px;
+    margin: 8px;
+}
+.memory-wraper {
+    display: flex;
+    flex-wrap: wrap;
+}
