@@ -3,27 +3,27 @@
         
             {
             "pic": "https://cdn.pixabay.com/photo/2020/06/10/14/15/landscape-5282895_150.jpg",
-            "statePic":false
+            "statePic":"false"
             }
             
         ,
         
             {
             "pic": "https://cdn.pixabay.com/photo/2020/06/06/14/36/ice-5266805_150.jpg",
-            "statePic":false
+            "statePic":"false"
             }
         ,
         
             {
                 "pic": "https://cdn.pixabay.com/photo/2020/06/11/10/52/separation-5286208_150.jpg",
-                "statePic":false
+                "statePic":"false"
                 }
         ,
         
             {
              "pic":"https://cdn.pixabay.com/photo/2020/06/11/13/50/poppies-5286805_150.jpg",
             
-            "statePic":false
+            "statePic":"false"
             
         }
         ,
@@ -31,42 +31,42 @@
             {
             "pic":"https://cdn.pixabay.com/photo/2020/06/10/12/33/storm-5282509_150.jpg",
             
-            "statePic":false
+            "statePic":"false"
             }
         ,
         
             {
             "pic":"https://cdn.pixabay.com/photo/2020/06/03/15/20/landscape-5255326_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
             {
             "pic":"https://cdn.pixabay.com/photo/2020/06/06/04/20/lein-5265194_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
             {
             "pic":"https://cdn.pixabay.com/photo/2020/06/12/08/08/landscape-5289604_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
             {
             "pic":"https://cdn.pixabay.com/photo/2020/06/07/07/42/water-lily-5269396_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
             {
             "pic":"https://cdn.pixabay.com/photo/2020/06/06/15/47/rose-5267068_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
@@ -75,7 +75,7 @@
             
             "pic":"https://cdn.pixabay.com/photo/2020/06/10/14/19/landscape-5282903_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
@@ -83,7 +83,7 @@
 
             "pic":"https://cdn.pixabay.com/photo/2020/06/10/14/19/landscape-5282903_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
@@ -92,7 +92,7 @@
             
             "pic":"https://cdn.pixabay.com/photo/2020/06/10/13/21/cat-5282680_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
@@ -101,7 +101,7 @@
             
             "pic":"https://cdn.pixabay.com/photo/2020/06/10/01/16/book-5280551_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
@@ -110,7 +110,7 @@
             
             "pic":"https://cdn.pixabay.com/photo/2020/06/11/13/56/lighthouse-5286823_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
@@ -119,7 +119,7 @@
             
             "pic":"https://cdn.pixabay.com/photo/2020/06/11/18/18/guinea-pig-5287749_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
@@ -128,7 +128,7 @@
             
             "pic":"https://cdn.pixabay.com/photo/2020/06/10/13/08/virgin-in-the-green-5282638_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
@@ -137,7 +137,7 @@
             
             "pic":"https://cdn.pixabay.com/photo/2020/06/10/16/19/squirrel-5283329_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
@@ -146,7 +146,7 @@
             
             "pic":"https://cdn.pixabay.com/photo/2020/06/12/15/55/sparrow-5290839_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
         ,
         
@@ -155,8 +155,10 @@
             
             "pic":"https://cdn.pixabay.com/photo/2020/06/09/21/48/great-tit-5280170_150.jpg",
             
-                "statePic":false
+                "statePic":"false"
             }
-        
+
+
     ]
+    
 }

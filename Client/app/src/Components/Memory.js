@@ -4,7 +4,7 @@ import './Memory.css'
 
 function Memory ({ sideBarState }) {
   const [ data, setData ] = useState([]);
-  const [ cardShown, setCardShown ] = useState();
+  const [ loading, setLoading ] = useState('Loading');
   
 
   const getData = async () => { 
@@ -14,10 +14,16 @@ function Memory ({ sideBarState }) {
   }
 
   const turnCard = (e) => {
-    data.map(item => {
-      if ( item[0].id === Number(e.target.getAttribute( 'id')) ) {
-        setData( item[0].statePic === 'false' ? 'true': 'false' )
-      } 
+    data.map(picture => {
+      if( picture.id === Number(e.target.getAttribute('id')) ) {
+        setData(() => {
+          return(
+            picture.statePic = !picture.statePic
+          );
+          
+        });
+        setData(data)
+      }
     })
   }
 
@@ -25,14 +31,18 @@ function Memory ({ sideBarState }) {
     getData()
   },[])
 
+  console.log(data)
   return (
     <div className={ sideBarState ? 'setting-wraper-open': 'setting-wraper-close' }>
+      {data.length === 0 ? loading : 
       <div className="card-wrap">
       {data.map(pic =>  <div onClick={turnCard} className="flip-card">
-        {  <img id={pic[0].id} imageState={pic[0].statePic} src={pic[0].statePic === 'false' ? pic[0].pic : pict} onClick={turnCard} />  }
+        <img id={ pic.id } src={pic.statePic === true ? pic.pic : pict} onClick={turnCard} />
       </div>
+      
       )}
       </div>
+      }
     </div>
   )
 
