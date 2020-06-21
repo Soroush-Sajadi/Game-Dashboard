@@ -1,12 +1,10 @@
-const { uuidv4 } = require ('./idGenerator')
 const fs = require('fs');
 
 
 
 const addImage = (arr) => {
-  console.log('generate')
   let images = []
-  for ( let i = 0; i < 16 ; i += 1 ) {
+  for ( let i = 0; i < 8 ; i += 1 ) {
     images.push( arr[i] );
     images.push( arr[i] );
   }

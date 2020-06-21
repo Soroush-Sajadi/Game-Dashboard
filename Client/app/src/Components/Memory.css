@@ -1,17 +1,47 @@
-
-
-.flip-card {
-    background-color: transparent;
-    width: 120px;
-    height: 100px;
+*{
+    margin: 0;
+    padding: 0;
 }
-.flip-card img {
-    margin: 5%;
+.flip-card-true {
+    background-color: transparent;
+    margin: 0% ;
+    animation-name: slideinSetting;
+    transform: rotateY(180deg);
+
+    }
+.flip-card-true img {
+    width: 190px;
+    height: 120px;
+
+}
+.flip-card-false {
+    background-color: transparent;
+    margin: 0% ;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    transform: rotateY(180deg);
+
+
+}
+.flip-card-false img {
+    width: 190px;
+    height: 120px;
 }
 .card-wrap {
     display: flex;
     flex-wrap: wrap;
-    
 }
+@keyframes slideinSetting {
+    from {
+      transform: rotateY(0deg)
+    }
+  
+    to {
+        transform: rotateY(180deg)
+    }
+  }
+
+
+
   
   
