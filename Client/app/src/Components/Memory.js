@@ -6,7 +6,10 @@ function Memory ({ sideBarState }) {
   const [ data, setData ] = useState([]);
   const [ loading, setLoading ] = useState('Loading');
   const [ turn, setTurn ] = useState(1);
-  const [ selectedItem, setSelectedItem ] = useState ([])
+  const [ selectedItem, setSelectedItem ] = useState ([]);
+  const [ points, setPoints ] = useState(0);
+  const [ matchedPictures, setMatchedPictures] = useState(0);
+  const [ gameIsDone, setGameISDone ] = useState (false);
 
   //const [, forceUpdate] = useReducer(x => x + 1, 0);  
 
@@ -30,6 +33,7 @@ function Memory ({ sideBarState }) {
     if (turn === 2) {
      restartState( data, data[selectedItem[0]], data[selectedItem[2]], data[selectedItem[0]], data[selectedItem[2]] )
     }
+    gameOver()
   }
 
   const restartState = (data, firstPicture ,secondPicture, firstState, secondState) => {
@@ -41,6 +45,8 @@ function Memory ({ sideBarState }) {
           },100)
         });
         setData(data);
+        setMatchedPictures( matchedPictures + 1 );
+        setPoints(points + 20);
         setTurn(1);
         setSelectedItem([]);
       } else {
@@ -51,29 +57,36 @@ function Memory ({ sideBarState }) {
           },100 )
       });
         setData(data);
-        console.log(data)
+        setPoints(points - 5)
         setTurn(1);
         setSelectedItem([]);
       }
   }
-
+  const gameOver = () => {
+    data.map(item => {
+      if (matchedPictures === ((data.length) / 2)  ) {
+        setGameISDone(true);
+      }
+    })
+  }
  
 
   useEffect(() => {
     getData()
   },[])
   
-
   return (
     <div className={ sideBarState ? 'setting-wraper-open': 'setting-wraper-close' }>
-      {data.length === 0 ? loading : 
+      {gameIsDone ? <h1>Game is Done</h1>:
       <div className="card-wrap">
       {data.map(pic =>  <div  onClick={pic.statePic === false ? turnCard: null} className={pic.statePic? "flip-card-true": "flip-card-false"}>
-      {pic.statePic === 'done' ? null : <img id={ pic.id } src={pic.statePic ? pic.pic: pict} onClick={ turnCard}  /> }
+      {pic.statePic === 'done' ? <div className="done"/> : <img id={ pic.id } src={!pic.statePic ? pic.pic: pict} onClick={ turnCard}  /> }
       </div>
       )}
       </div>
       }
+      <h3>Score: {points}</h3>
+      
     </div>
   )
 }
