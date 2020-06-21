@@ -30,6 +30,9 @@
     display: flex;
     flex-wrap: wrap;
 }
+.card-wrap h3 {
+    float: right;
+}
 
 .done {
     width: 220px;

@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useReducer } from 'react';
+import { NavLink } from 'react-router-dom';
 import pict from '../Images/card-background.jpg'
 import './Memory.css'
 
-function Memory ({ sideBarState }) {
+function Memory ({ sideBarState, getScore }) {
   const [ data, setData ] = useState([]);
   const [ loading, setLoading ] = useState('Loading');
   const [ turn, setTurn ] = useState(1);
   const [ selectedItem, setSelectedItem ] = useState ([]);
-  const [ points, setPoints ] = useState(0);
+  const [ score, setScore ] = useState(0);
   const [ matchedPictures, setMatchedPictures] = useState(0);
   const [ gameIsDone, setGameISDone ] = useState (false);
 
@@ -19,7 +20,7 @@ function Memory ({ sideBarState }) {
       .then( res => setData(res) ) 
   }
 
-  const turnCard = (e) => {
+  const turnCard = async (e) => {
     setTurn(turn + 1);
     data.map((picture, i) => {
       if( picture.id === Number(e.target.getAttribute('id')) ) {
@@ -31,9 +32,29 @@ function Memory ({ sideBarState }) {
       };
     });
     if (turn === 2) {
-     restartState( data, data[selectedItem[0]], data[selectedItem[2]], data[selectedItem[0]], data[selectedItem[2]] )
+    await restartState( data, data[selectedItem[0]], data[selectedItem[2]], data[selectedItem[0]], data[selectedItem[2]] )
     }
-    gameOver()
+    if(matchedPictures === data.length/2 ) {
+      await gameOver();
+      fetchData( getDataFromLocalStorage( 'username' ),score )
+    }
+  }
+
+  const fetchData = async (username, score) => {
+    if( JSON.parse(window.localStorage.getItem('username')) !== null ) {
+      const scoreFromLocalStorage = getDataFromLocalStorage('score');
+      saveDataToLocalStorage('score', score + scoreFromLocalStorage );
+      await getScore( score )
+      await fetch(`http://localhost:3000/score/${username}/${score}`)
+    }
+  }
+
+  const saveDataToLocalStorage = (name, data) => {
+    window.localStorage.setItem(name, JSON.stringify(data))
+  }
+
+  const getDataFromLocalStorage = (name) => {
+    return JSON.parse(window.localStorage.getItem(name));
   }
 
   const restartState = (data, firstPicture ,secondPicture, firstState, secondState) => {
@@ -46,7 +67,7 @@ function Memory ({ sideBarState }) {
         });
         setData(data);
         setMatchedPictures( matchedPictures + 1 );
-        setPoints(points + 20);
+        setScore(score + 20);
         setTurn(1);
         setSelectedItem([]);
       } else {
@@ -57,36 +78,42 @@ function Memory ({ sideBarState }) {
           },100 )
       });
         setData(data);
-        setPoints(points - 5)
+        setScore(score - 5)
         setTurn(1);
         setSelectedItem([]);
       }
   }
   const gameOver = () => {
-    data.map(item => {
-      if (matchedPictures === ((data.length) / 2)  ) {
-        setGameISDone(true);
-      }
-    })
+      setGameISDone(true);
   }
  
 
   useEffect(() => {
     getData()
   },[])
-  
+  console.log(selectedItem)
   return (
     <div className={ sideBarState ? 'setting-wraper-open': 'setting-wraper-close' }>
-      {gameIsDone ? <h1>Game is Done</h1>:
+      {gameIsDone ? 
+      <div>
+        <h1>Game over</h1>
+        <h3>20 points for each correct guess and -10 points for each wrong one</h3>
+        <h3>Score: {score}</h3>
+        <NavLink to="/">
+          <h2>Play More</h2>
+        </NavLink>
+      </div>
+      :
+      <div>
       <div className="card-wrap">
       {data.map(pic =>  <div  onClick={pic.statePic === false ? turnCard: null} className={pic.statePic? "flip-card-true": "flip-card-false"}>
-      {pic.statePic === 'done' ? <div className="done"/> : <img id={ pic.id } src={!pic.statePic ? pic.pic: pict} onClick={ turnCard}  /> }
+      {pic.statePic === 'done' ? <div className="done"/> : <img id={ pic.id } src={pic.statePic ? pic.pic: pict} onClick={ turnCard}  /> }
       </div>
       )}
       </div>
+      <h3>Score: {score}</h3>
+      </div>
       }
-      <h3>Score: {points}</h3>
-      
     </div>
   )
 }

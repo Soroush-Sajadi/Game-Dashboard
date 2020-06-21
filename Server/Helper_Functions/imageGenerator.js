@@ -1,16 +1,29 @@
 const fs = require('fs');
 
-
+const generateRan = (arr) => {
+  const max = arr.length;
+  let random = [];
+  for(let i = 0; i < max; i += 1 ){
+      let temp = Math.floor( Math.random() * max );
+      if( random.indexOf(temp) === -1){
+          random.push(temp);
+      }
+      else
+       i--;
+  }
+  return random;
+}
 
 const addImage = (arr) => {
+  const randomNumbers = generateRan(arr)
   let images = []
   for ( let i = 0; i < 8 ; i += 1 ) {
-    images.push( arr[i] );
-    images.push( arr[i] );
+    images.push( arr[randomNumbers[i]] );
+    images.push( arr[randomNumbers[i]] );
   }
-
   return images
 }
+
 const shuffle = (arr) => {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -26,9 +39,5 @@ const generatorImage = async(arr) => {
   });
   
 }
-
-
-
-
 
 module.exports.generatorImage = generatorImage;

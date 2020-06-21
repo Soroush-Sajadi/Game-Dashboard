@@ -52,7 +52,7 @@ function App() {
                 <Route exact path="/login" render={() => <LogIn sideBarState={isOpen} getUser={getUser} getScore={getScore}/>}/>
                 <Route path="/login/account" render={() => <CreateAccount sideBarState={isOpen} />} />
                 <Route path="/quiz" render={() => <Quiz sideBarState={isOpen} category={category} getScore={getScore} />} />
-                <Route path="/memory" render={() => <Memory sideBarState={isOpen} />} />
+                <Route path="/memory" render={() => <Memory sideBarState={isOpen} getScore={getScore} />} />
 
               </Switch>
             </div>

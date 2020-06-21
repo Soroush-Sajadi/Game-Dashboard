@@ -93,7 +93,7 @@ function Quiz ({ sideBarState, category, getScore }) {
           </div>
           <div className="score-footer" >
             <NavLink to="/" style={{ textDecoration: 'none' }}>
-              <h3>New game</h3>
+              <h3>Play more</h3>
             </NavLink>
             
           </div>
