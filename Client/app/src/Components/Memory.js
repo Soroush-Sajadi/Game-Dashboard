@@ -21,7 +21,6 @@ function Memory ({ sideBarState, getScore }) {
   }
 
   const turnCard = async (e) => {
-    console.log('hasdkja')
     setTurn(turn + 1);
     data.map((picture, i) => {
       if( picture.id === Number(e.target.getAttribute('id')) ) {
@@ -35,8 +34,11 @@ function Memory ({ sideBarState, getScore }) {
     if (turn > 1) {
     await restartState( data, data[selectedItem[0]], data[selectedItem[1]], data[selectedItem[0]], data[selectedItem[1]] )
     }
-    if(matchedPictures === 8 ) {
-      gameOver();
+    if(matchedPictures + 1 === (data.length)/2 ) {
+        gameOver();
+       
+
+
       fetchData( getDataFromLocalStorage( 'username' ),score )
     }
   }
@@ -92,7 +94,6 @@ function Memory ({ sideBarState, getScore }) {
   useEffect(() => {
     getData()
   },[])
-  console.log(selectedItem)
   return (
     <div className={ sideBarState ? 'setting-wraper-open': 'setting-wraper-close' }>
       {gameIsDone ? 
@@ -108,7 +109,7 @@ function Memory ({ sideBarState, getScore }) {
       <div>
       <div className="card-wrap">
       {data.map(pic =>  <div  onClick={pic.statePic === false ? turnCard: null} className={pic.statePic? "flip-card-true": "flip-card-false"}>
-      {pic.statePic === 'done' ? <div className="done"/> : <img id={ pic.id } src={!pic.statePic ? pic.pic: pict}  /> }
+      {pic.statePic === 'done' ? <div className="done"/> : <img id={ pic.id } src={pic.statePic ? pic.pic: pict}  /> }
       </div>
       )}
       </div>

@@ -10,6 +10,7 @@ const generalQuestions = require('./DB/quiz.json');
 const images = require('./DB/images.json');
 const accounts = require('./DB/accounts.json')
 const readyImages = require('./DB/readyImages.json')
+const threeInRow = require('./DB/threeInRow.json')
 const dir = path.join(__dirname, '/Images/');
 imagesName=['game', 'generalknowledge', 'mathematic'];
 const { varifyAccount } = require( './Helper_Functions/varify' )
@@ -54,8 +55,11 @@ app.get('/generalknowledge', (req, res) => {
 
 app.get('/memory', async ( req, res ) => {
   await generatorImage(images.images);
-  
-res.json(addId(readyImages));
+  res.json(addId(readyImages));
+})
+
+app.get('/threeInRow', ( req, res ) => {
+  res.json(threeInRow);
 })
 
 app.get('/score/:username/:score', (req, res) => {

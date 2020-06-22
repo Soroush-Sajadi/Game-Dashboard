@@ -10,6 +10,7 @@ import NavBar from './Components/NavBar';
 import CreateAccount from './Components/CreateAccount';
 import Quiz from './Components/Quiz';
 import Memory from  './Components/Memory';
+import ThreeInRow from './Components/ThreeInRow'
 
 function App() {
   const [ isOpen, setIsOpen ] = useState(true);
@@ -53,6 +54,7 @@ function App() {
                 <Route path="/login/account" render={() => <CreateAccount sideBarState={isOpen} />} />
                 <Route path="/quiz" render={() => <Quiz sideBarState={isOpen} category={category} getScore={getScore} />} />
                 <Route path="/memory" render={() => <Memory sideBarState={isOpen} getScore={getScore} />} />
+                <Route path="/three in row" render={() => <ThreeInRow  sideBarState={isOpen}/>} />
 
               </Switch>
             </div>

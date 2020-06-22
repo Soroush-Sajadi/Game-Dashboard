@@ -21,11 +21,6 @@ function Home ({sideBarState, getCategory}) {
 
   useEffect( () => {
      fetchData();
-     setTimeout (() => {
-      if (data.length >0 ) {
-        console.log(data[0].categories[0])
-       }
-     },250)
   },[]);
 
   return (
@@ -36,7 +31,7 @@ function Home ({sideBarState, getCategory}) {
         <div className="card-wraper">
           {data[0].categories.map(item => {
           return  <div className="card" onClick={sendCategory}>
-            <NavLink to={item.title !== 'Memory' ? '/quiz': '/memory'} style={{ textDecoration: 'none' }}>
+            <NavLink to={`${item.title}`} style={{ textDecoration: 'none' }}>
               <p>{ item.title }</p>
               <img allt="as" src ={item.image}/>
             </NavLink>

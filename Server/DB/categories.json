@@ -3,15 +3,15 @@
     
         "categories": [
             {
-                "title":"General Knowlege",
+                "title":"quiz",
                 "image":"http://localhost:3000/images/generalknowledge"
             },
             {
-                "title":"Memory",
+                "title":"memory",
                 "image":"http://localhost:3000/images/game"
             },
             {
-                "title":"Mathematic",
+                "title":"three in row",
                 "image":"http://localhost:3000/images/mathematic"
             }
         ]
