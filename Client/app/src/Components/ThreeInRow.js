@@ -12,9 +12,18 @@ function ThreeInRow ({ sideBarState }) {
       .then( res => setData(res) ) 
   }
 
-  const play = () => {
+  const play = (e) => {
     setTurn(turn + 1);
+    data.map(item => {
+      if(item.id === e.target.getAttribute('id')) {
+        setData(() => {
+          item.state = true
+        });
+        setData(data)
+      }
+    })
   }
+
 
   useEffect  (() => {
     getData()
@@ -26,11 +35,14 @@ console.log(data)
       <>
       <div className="side-div">
         <h3 className={turn % 2 === 0 ? "active" : "your-turn"}>You</h3>
-        <h3 className={turn % 2 !== 0 ? "active" : "pc-turn"}>computer</h3>
+        <h3 className={turn % 2 === 1 ? "active" : "pc-turn"}>computer</h3>
         </div>
       <div className="three-in-row-wrapper">
-        {data.map( (item, i) => 
+        {data.map( (item, i) =>
+        !item.state ? 
           <div key={i} id={item.id} className="three-in-row" onClick={play}>
+          </div> :
+          <div key={i} id={item.id} className="three-in-row">
           </div>
         )}
       </div>
