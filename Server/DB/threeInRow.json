@@ -1,39 +1,48 @@
  [
             {
                 "id":"1",
-                "state": false
+                "state": false,
+                "color":""
             },
             {
                 "id":"2",
-                "state": false
+                "state": false,
+                "color":""
             },
             {
                 "id":"3",
-                "state": false
+                "state": false,
+                "color":""
             },
             {
                 "id":"4",
-                "state": false
+                "state": false,
+                "color":""
             },
             {
                 "id":"5",
-                "state": false
+                "state": false,
+                "color":""
             },
             {
                 "id":"6",
-                "state": false
+                "state": false,
+                "color":""
             },
             {
                 "id":"7",
-                "state": false
+                "state": false,
+                "color":""
             },
             {
                 "id":"8",
-                "state": false
+                "state": false,
+                "color":""
             },
             {
                 "id":"9",
-                "state": false
+                "state": false,
+                "color":""
             }
         ]
 

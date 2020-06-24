@@ -29,8 +29,27 @@
       height: 150px;
     
   }
+  .img{
+    width: 25%;
+    height: 150px;
+    margin: 1%;
+  }
   .active {
       color: blue;
+  }
+  .color-selection-wrapper {
+      text-align: center;
+  }
+  .img-wrapper {
+
+    display: flex;
+    justify-content: center
+  }
+  .img-wrapper img {
+      border: 2px solid blueviolet;
+      margin: 0 5px;
+      width: 150px;
+      height: 150px;
   }
   @keyframes slideinSetting {
     from {
