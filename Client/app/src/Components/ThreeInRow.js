@@ -13,6 +13,7 @@ function ThreeInRow ({ sideBarState }) {
   const [ gameOver, setGameOver ] = useState(false);
   const [ bluePlayer, setBluePlayer ] = useState([]);
   const [ redPlayer, setRedPlayer ] = useState([]);
+  const [ winner, setWinner ] = useState(null)
 
 
   const getData = async () => { 
@@ -36,6 +37,8 @@ function ThreeInRow ({ sideBarState }) {
       } 
     })
     playersSelect()
+    findWinner(bluePlayer,color);
+    findWinner(redPlayer,color)
     gameIsOver();
   }
 
@@ -59,8 +62,24 @@ function ThreeInRow ({ sideBarState }) {
     } 
   }
 
-  const winner = () => {
-
+  const findWinner = (arr, color) => {
+    for ( let i = 0;  i < arr.length; i += 1 ) {
+      let sum = 0;
+      if( arr.length > 2 ) {
+        for (let j = 0; j < 3; j += 1) {
+          sum += Number(arr[j]) 
+          if ( sum === 15 ) {
+            return setWinner(color)
+          } else {
+            const firstIndex = arr[0];
+            arr.shift();
+            arr.push(firstIndex);
+          }
+        }
+      }
+      
+    }
+    console.log(arr)
   }
 
 
@@ -68,10 +87,7 @@ function ThreeInRow ({ sideBarState }) {
   useEffect  (() => {
     getData()
   },[])
-
-  console.log('blue', bluePlayer)
-  console.log('red', redPlayer)
-
+  console.log(winner)
   return (
     <div className={ sideBarState ? 'threeInRow-wraper-open': 'threeInRow-wraper-close' }>
       {gameOver ? <h2>Game Is over</h2>:
