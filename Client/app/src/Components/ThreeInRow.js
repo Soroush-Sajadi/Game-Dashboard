@@ -9,6 +9,11 @@ function ThreeInRow ({ sideBarState }) {
   const [ loading, setLoading ] = useState('Loading');
   const [ turn, setTurn ] = useState(0);
   const [ selectColor, setSelectColor ] = useState(null)
+  const [ numberClicked, setNumberClicked ] = useState (1);
+  const [ gameOver, setGameOver ] = useState(false);
+  const [ bluePlayer, setBluePlayer ] = useState([]);
+  const [ redPlayer, setRedPlayer ] = useState([]);
+
 
   const getData = async () => { 
     await fetch (`http://localhost:3000/threeInRow`)
@@ -18,31 +23,59 @@ function ThreeInRow ({ sideBarState }) {
 
   const play = (e) => {
     const color = e.target.getAttribute('value')
+    const id = e.target.getAttribute('id');
+    playersSelect(color, id);
     setTurn(turn + 1);
     data.map(item => {
       if(item.id === e.target.getAttribute('id')) {
         setData((e) => {
           item.state = true
           item.color = color
-         
         });
         setData(data)
       } 
     })
+    playersSelect()
+    gameIsOver();
+  }
+
+  const playersSelect = (color, id) => {
+      if(color === 'blue') {
+        bluePlayer.push(id);
+      } 
+      else if (color === 'red') {
+        redPlayer.push(id);
+      }
   }
 
   const selectedColor = (e) => {
     setSelectColor(e.target.getAttribute('id'));
   }
 
+  const gameIsOver = async () => {
+    await setNumberClicked( numberClicked + 1 );
+    if ( numberClicked === data.length ) {
+      setGameOver( true );
+    } 
+  }
+
+  const winner = () => {
+
+  }
+
+
 
   useEffect  (() => {
     getData()
   },[])
 
-  console.log(selectColor)
+  console.log('blue', bluePlayer)
+  console.log('red', redPlayer)
+
   return (
     <div className={ sideBarState ? 'threeInRow-wraper-open': 'threeInRow-wraper-close' }>
+      {gameOver ? <h2>Game Is over</h2>:
+      <>
       {selectColor !== null ? 
       <>
       {data.length === 0 ?loading :
@@ -62,7 +95,6 @@ function ThreeInRow ({ sideBarState }) {
         )}
       </div>
       </>
-      
       }
       </>
       : 
@@ -75,6 +107,8 @@ function ThreeInRow ({ sideBarState }) {
 
       </div>
       }
+      </>
+    }
     </div>
   )
 
