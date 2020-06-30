@@ -44,10 +44,10 @@ function ThreeInRow ({ sideBarState }) {
 
   const playersSelect = (color, id) => {
       if(color === 'blue') {
-        bluePlayer.push(id);
+        bluePlayer.unshift(id);
       } 
       else if (color === 'red') {
-        redPlayer.push(id);
+        redPlayer.unshift(id);
       }
   }
 
@@ -63,23 +63,20 @@ function ThreeInRow ({ sideBarState }) {
   }
 
   const findWinner = (arr, color) => {
-    for ( let i = 0;  i < arr.length; i += 1 ) {
-      let sum = 0;
-      if( arr.length > 2 ) {
-        for (let j = 0; j < 3; j += 1) {
-          sum += Number(arr[j]) 
+    if ( arr.length > 2 ) {
+      for ( let i = 0;  i < arr.length; i += 1 ) {
+        let sum = 0;
+          for (let j = 0; j < 3; j += 1) {
+            sum += Number(arr[j])
+          }  
           if ( sum === 15 ) {
-            return setWinner(color)
+            setWinner(color)
+            setGameOver(true)
           } else {
-            const firstIndex = arr[0];
-            arr.shift();
-            arr.push(firstIndex);
+            arr.push(arr.shift());
           }
-        }
       }
-      
     }
-    console.log(arr)
   }
 
 
@@ -87,6 +84,7 @@ function ThreeInRow ({ sideBarState }) {
   useEffect  (() => {
     getData()
   },[])
+  
   console.log(winner)
   return (
     <div className={ sideBarState ? 'threeInRow-wraper-open': 'threeInRow-wraper-close' }>
