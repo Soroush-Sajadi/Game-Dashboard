@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import blueRing from '../Images/ring-blue.svg'
-import redRing from '../Images/ring-red.svg'
+import { NavLink } from 'react-router-dom';
+import blueRing from '../Images/ring-blue.svg';
+import redRing from '../Images/ring-red.svg';
 
 import './ThreeInRow.css'
 
@@ -13,7 +14,10 @@ function ThreeInRow ({ sideBarState }) {
   const [ gameOver, setGameOver ] = useState(false);
   const [ bluePlayer, setBluePlayer ] = useState([]);
   const [ redPlayer, setRedPlayer ] = useState([]);
-  const [ winner, setWinner ] = useState(null)
+  const [ winner, setWinner ] = useState(null);
+  const [ numberWinnerPlayer, setNumberWinnerPlayer ] = useState(0);
+  const [ numberWinnerPc, setNumberWinnerPc ] = useState(0) 
+
 
 
   const getData = async () => { 
@@ -71,7 +75,7 @@ function ThreeInRow ({ sideBarState }) {
           }  
           if ( sum === 15 ) {
             setWinner(color)
-            setGameOver(true)
+            return color === selectColor ? setNumberWinnerPlayer( numberWinnerPlayer + 1 ): setNumberWinnerPc ( numberWinnerPc + 1 );
           } else {
             arr.push(arr.shift());
           }
@@ -79,24 +83,51 @@ function ThreeInRow ({ sideBarState }) {
     }
   }
 
+  const resetItems = (arr) => {
+    arr.map(item => {
+      setData((e) => {
+        item.state = false
+        item.color = ''
+      });
+    })
+    setData(data)
+  }
+
+  const restartGame = () => {
+    setWinner(null)
+    resetItems(data)
+    setBluePlayer([]);
+    setRedPlayer([]);
+    setNumberClicked(1);
+    setGameOver(false);
+    setTurn(0)
+  }
 
 
   useEffect  (() => {
     getData()
   },[])
   
-  console.log(winner)
+  console.log(data)
   return (
     <div className={ sideBarState ? 'threeInRow-wraper-open': 'threeInRow-wraper-close' }>
-      {gameOver ? <h2>Game Is over</h2>:
+       {winner !== null ? 
+       <div>
+          {winner === selectColor ? 
+            <h2>Congradulation! You are the winner</h2>:<h2>Sorry! You lost</h2>}
+            <h4 onClick={restartGame}>Play again</h4>
+       </div>
+       :
+      <>
+      {gameOver ? <h2>Game Is over{winner}</h2> :
       <>
       {selectColor !== null ? 
       <>
       {data.length === 0 ?loading :
       <>
       <div className="side-div">
-        <h3 className={turn % 2 === 0 ? "active" : "your-turn"}>You</h3>
-        <h3 className={turn % 2 === 1 ? "active" : "pc-turn"}>computer</h3>
+        <h3 className={turn % 2 === 0 ? "active" : "your-turn"}>You: { numberWinnerPlayer }</h3>
+        <h3 className={turn % 2 === 1 ? "active" : "pc-turn"}>computer: { numberWinnerPc }</h3>
         </div>
       <div className="three-in-row-wrapper">
         {data.map( (item, i) =>
@@ -115,11 +146,13 @@ function ThreeInRow ({ sideBarState }) {
       <div className="color-selection-wrapper">
         <h1>Choose your color</h1>
         <div className="img-wrapper">
-          <img id="blue" on src={ blueRing } onClick={selectedColor}/>
+          <img id="blue" src={ blueRing } onClick={selectedColor}/>
           <img id="red" src={ redRing } onClick={selectedColor}/>
         </div>
 
       </div>
+      }
+      </>
       }
       </>
     }
