@@ -10,6 +10,26 @@
     animation-duration: 2s;
     animation-name: slideinSetting;
   }
+  .wrapper-setting {
+    width: 65%;
+    height: 440px;
+    background-color: #0000004a;
+    text-align: center;
+    display: flex;
+  }
+  .wrapper-background {
+    display: flex;
+    width: 100%;
+  }
+  .background-title {
+    width: 40%;
+    height: 20%
+  }
+  .background-colors {
+    width: 60%;
+    height: 20%
+  }
+  
   @keyframes slideinSetting {
     from {
       width: 80%; 

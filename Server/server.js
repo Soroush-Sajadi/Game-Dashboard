@@ -21,13 +21,9 @@ const { generatorImage } = require( './Helper_Functions/imageGenerator' )
 const { addId } = require('./Helper_Functions/addingId')
 
 
-
-
-
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
 
 
 app.get('/' , (req, res) => {

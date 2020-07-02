@@ -49,10 +49,12 @@
     justify-content: center
   }
   .img-wrapper img {
-      border: 2px solid blueviolet;
       margin: 0 5px;
-      width: 150px;
-      height: 150px;
+      width: 250px;
+      height: 200px;
+      -webkit-box-shadow: 1px -4px 15px -3px rgba(113,48,173,1);
+      -moz-box-shadow: 1px -4px 15px -3px rgba(113,48,173,1);
+      box-shadow: 1px -4px 15px -3px rgba(113,48,173,1);
   }
   @keyframes slideinSetting {
     from {

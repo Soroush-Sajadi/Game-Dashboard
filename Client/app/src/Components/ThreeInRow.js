@@ -6,8 +6,6 @@ import './ThreeInRow.css'
 
 function ThreeInRow ({ sideBarState, getScore }) {
   const [ data, setData ] = useState([]);
-  //const [ didMount, setDidMount ] = useState(false);
-  const mounted = useRef(false);
   const [ loading, setLoading ] = useState('Loading');
   const [ turn, setTurn ] = useState(0);
   const [ selectColor, setSelectColor ] = useState(null)
@@ -61,7 +59,7 @@ function ThreeInRow ({ sideBarState, getScore }) {
           if ( sum === 15 ) {
             setTimeout( async() => {
               await setWinner(color)
-            }, 650)
+            }, 450)
             setBluePlayer([]);
             setRedPlayer([]);
             console.log(selectColor,  color)
@@ -92,7 +90,7 @@ function ThreeInRow ({ sideBarState, getScore }) {
     playersSelect(color, id);
     setTimeout(() => {
       setTurn(turn + 1);
-    },700)
+    },400)
     changeDataState(data, color, e.target.getAttribute('id'))
     findWinner(bluePlayer,color);
     findWinner(redPlayer,color)
@@ -168,6 +166,7 @@ function ThreeInRow ({ sideBarState, getScore }) {
   useEffect  (() => {
     getData();
   },[])
+  
   return (
     <div className={ sideBarState ? 'threeInRow-wraper-open': 'threeInRow-wraper-close' }>
        {winner !== null ? 
