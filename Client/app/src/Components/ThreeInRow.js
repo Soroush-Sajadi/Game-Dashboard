@@ -59,7 +59,9 @@ function ThreeInRow ({ sideBarState }) {
             sum += Number(arr[j])
           }  
           if ( sum === 15 ) {
-            setWinner(color)
+            setTimeout( async() => {
+              await setWinner(color)
+            }, 650)
             setBluePlayer([]);
             setRedPlayer([]);
             return color === selectColor ? setNumberWinnerPlayer( numberWinnerPlayer + 1 ): setNumberWinnerPc ( numberWinnerPc + 1 );

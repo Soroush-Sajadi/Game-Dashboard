@@ -27,6 +27,9 @@
       background-color: antiquewhite;
       width: 25%;
       height: 150px;
+      -webkit-box-shadow: 1px -4px 15px -3px rgba(113,48,173,1);
+      -moz-box-shadow: 1px -4px 15px -3px rgba(113,48,173,1);
+      box-shadow: 1px -4px 15px -3px rgba(113,48,173,1);
     
   }
   .img{
