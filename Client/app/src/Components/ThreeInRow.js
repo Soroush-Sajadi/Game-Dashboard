@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
 import blueRing from '../Images/ring-blue.svg';
 import redRing from '../Images/ring-red.svg';
 
@@ -7,6 +6,8 @@ import './ThreeInRow.css'
 
 function ThreeInRow ({ sideBarState }) {
   const [ data, setData ] = useState([]);
+  //const [ didMount, setDidMount ] = useState(false);
+  const mounted = useRef(false);
   const [ loading, setLoading ] = useState('Loading');
   const [ turn, setTurn ] = useState(0);
   const [ selectColor, setSelectColor ] = useState(null)
@@ -16,9 +17,8 @@ function ThreeInRow ({ sideBarState }) {
   const [ redPlayer, setRedPlayer ] = useState([]);
   const [ winner, setWinner ] = useState(null);
   const [ numberWinnerPlayer, setNumberWinnerPlayer ] = useState(0);
-  const [ numberWinnerPc, setNumberWinnerPc ] = useState(0) 
-
-
+  const [ numberWinnerPc, setNumberWinnerPc ] = useState(0);
+  const [ allSelected, setAllSelected ] = useState([])
 
   const getData = async () => { 
     await fetch (`http://localhost:3000/threeInRow`)
@@ -26,33 +26,20 @@ function ThreeInRow ({ sideBarState }) {
       .then( res => setData(res) ) 
   }
 
-  const play = (e) => {
-    const color = e.target.getAttribute('value')
-    const id = e.target.getAttribute('id');
-    playersSelect(color, id);
-    setTurn(turn + 1);
-    data.map(item => {
-      if(item.id === e.target.getAttribute('id')) {
-        setData((e) => {
-          item.state = true
-          item.color = color
-        });
-        setData(data)
-      } 
-    })
-    playersSelect()
-    findWinner(bluePlayer,color);
-    findWinner(redPlayer,color)
-    gameIsOver();
-  }
+  
 
   const playersSelect = (color, id) => {
+    if(color === selectColor) {
       if(color === 'blue') {
         bluePlayer.unshift(id);
-      } 
-      else if (color === 'red') {
-        redPlayer.unshift(id);
+        allSelected.unshift(id)
+      } else {
+        redPlayer.unshift(id)
+        allSelected.unshift(id)
       }
+    } 
+    else if (color !== selectColor && color !== undefined) {
+    }
   }
 
   const selectedColor = (e) => {
@@ -61,7 +48,7 @@ function ThreeInRow ({ sideBarState }) {
 
   const gameIsOver = async () => {
     await setNumberClicked( numberClicked + 1 );
-    if ( numberClicked === data.length ) {
+    if ( allSelected.length === data.length ) {
       setGameOver( true );
     } 
   }
@@ -83,6 +70,58 @@ function ThreeInRow ({ sideBarState }) {
     }
   }
 
+  const changeDataState = (data, color, r) => {
+    data.map(item => {
+      if(item.id === r) {
+        setData(() => {
+          item.state = true
+          item.color = color
+        });
+        setData(data);
+      } 
+    })
+  }
+
+  const play = (e) => {
+    const color = e.target.getAttribute('value')
+    const id = e.target.getAttribute('id');
+    playersSelect(color, id);
+    setTurn(turn + 1);
+    changeDataState(data, color, e.target.getAttribute('id'))
+    findWinner(bluePlayer,color);
+    findWinner(redPlayer,color)
+    gameIsOver();
+  }
+
+  const s = (arr, r) => {
+    for( let i = 0; i < arr.length; i += 1 ) {
+      if ( Number(arr[i]) === r ) {
+        
+        return false;
+      }
+    }
+    return true;
+  }
+
+  const pcPlays = ( player, color ) => {
+    let randomNumber = Math.floor(Math.random() * 9) + 1;
+      if ( s(player, randomNumber) ) {
+        setTurn (turn + 1)
+        player.push( randomNumber.toString() );
+        changeDataState(data, color, randomNumber.toString())
+        color === 'red' ? redPlayer.push(randomNumber.toString()) : bluePlayer.push(randomNumber.toString());
+        color === 'red' ? findWinner(redPlayer, 'red'): findWinner(bluePlayer, 'blue');
+      } else {
+          pcPlays(allSelected , color);
+      }
+  }
+
+  if (turn % 2 !== 0 && turn < 9 ) {
+    let color = ''
+    selectColor === 'blue' ? color = 'red' : color = 'blue';
+    pcPlays( allSelected, color )
+  }
+
   const resetItems = (arr) => {
     arr.map(item => {
       setData((e) => {
@@ -100,15 +139,14 @@ function ThreeInRow ({ sideBarState }) {
     setRedPlayer([]);
     setNumberClicked(1);
     setGameOver(false);
+    setAllSelected([])
     setTurn(0)
   }
 
-
   useEffect  (() => {
-    getData()
+    getData();
   },[])
-  
-  console.log(data)
+  //console.log('red', redPlayer,'blue', bluePlayer ,winner)
   return (
     <div className={ sideBarState ? 'threeInRow-wraper-open': 'threeInRow-wraper-close' }>
        {winner !== null ? 
@@ -119,7 +157,12 @@ function ThreeInRow ({ sideBarState }) {
        </div>
        :
       <>
-      {gameOver ? <h2>Game Is over{winner}</h2> :
+      {gameOver ? 
+        <div>
+          <h2>Game Is over{winner}</h2>
+          <h4 onClick={restartGame}>Play again</h4>
+        </div>
+        :
       <>
       {selectColor !== null ? 
       <>
@@ -158,7 +201,6 @@ function ThreeInRow ({ sideBarState }) {
     }
     </div>
   )
-
 }
 
 export default ThreeInRow;
