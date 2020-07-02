@@ -4,7 +4,7 @@ import redRing from '../Images/ring-red.svg';
 
 import './ThreeInRow.css'
 
-function ThreeInRow ({ sideBarState }) {
+function ThreeInRow ({ sideBarState, getScore }) {
   const [ data, setData ] = useState([]);
   //const [ didMount, setDidMount ] = useState(false);
   const mounted = useRef(false);
@@ -64,6 +64,8 @@ function ThreeInRow ({ sideBarState }) {
             }, 650)
             setBluePlayer([]);
             setRedPlayer([]);
+            console.log(selectColor,  color)
+            selectColor === color ? sendData( getDataFromLocalStorage( 'username' ), +50 ): sendData( getDataFromLocalStorage( 'username' ), -50)
             return color === selectColor ? setNumberWinnerPlayer( numberWinnerPlayer + 1 ): setNumberWinnerPc ( numberWinnerPc + 1 );
           } else {
             arr.push(arr.shift());
@@ -91,11 +93,27 @@ function ThreeInRow ({ sideBarState }) {
     setTimeout(() => {
       setTurn(turn + 1);
     },700)
-    
     changeDataState(data, color, e.target.getAttribute('id'))
     findWinner(bluePlayer,color);
     findWinner(redPlayer,color)
     gameIsOver();
+  }
+
+  const sendData = async (username, score) => {
+    if( JSON.parse(window.localStorage.getItem('username')) !== null ) {
+      const scoreFromLocalStorage = getDataFromLocalStorage('score');
+      saveDataToLocalStorage('score', score + scoreFromLocalStorage );
+      await getScore( score )
+      await fetch(`http://localhost:3000/score/${username}/${score}`)
+    }
+  }
+
+  const saveDataToLocalStorage = (name, data) => {
+    window.localStorage.setItem(name, JSON.stringify(data))
+  }
+
+  const getDataFromLocalStorage = (name) => {
+    return JSON.parse(window.localStorage.getItem(name));
   }
 
   const s = (arr, r) => {

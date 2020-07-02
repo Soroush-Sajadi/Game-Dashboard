@@ -54,7 +54,7 @@ function App() {
                 <Route path="/login/account" render={() => <CreateAccount sideBarState={isOpen} />} />
                 <Route path="/quiz" render={() => <Quiz sideBarState={isOpen} category={category} getScore={getScore} />} />
                 <Route path="/memory" render={() => <Memory sideBarState={isOpen} getScore={getScore} />} />
-                <Route path="/three in row" render={() => <ThreeInRow  sideBarState={isOpen}/>} />
+                <Route path="/three in row" render={() => <ThreeInRow  sideBarState={isOpen} getScore={getScore}/>} />
 
               </Switch>
             </div>
