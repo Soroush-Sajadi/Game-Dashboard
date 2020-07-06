@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Setting.css'
 
-function Setting ({ sideBarState }) {
+function Setting ({ sideBarState, getColor }) {
+  const [ color, setColor ] = useState(null);
+
+  const selectColor = (e) => {
+    getColor(e.target.getAttribute('id'))
+  }
+
   return (
     <div className={ sideBarState ? 'setting-wraper-open': 'setting-wraper-close' }>
       <div className="wrapper-setting">
@@ -9,13 +15,11 @@ function Setting ({ sideBarState }) {
           <div className="background-title">
             <h4> Background color: </h4>
           </div>
-          <div className="background-colors">
-            <input type="radio" name="#795548" value="Black"/>
-            <label for="Black">Black</label>
-            <input type="radio" name="#2fb9cb" value="Blue/Green" />
+          <div className="background-colors" onClick={selectColor}>
+            <input type="radio" id="#795548" name="color" value="Brown"/>
+            <label for="Black">Brown</label>
+            <input type="radio" id="#2fb9cb" name="color" value="Blue/Green" />
             <label for="Blue/Green">Blue/Green</label>
-            <input type="radio" name="#5a132b" value="Dark red" />
-            <label for="Dark red">Dark red</label>
           </div>
         </div>
       </div>

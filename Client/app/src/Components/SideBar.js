@@ -8,7 +8,7 @@ import openMenu from '../Images/openMenu.svg';
 import logOut from '../Images/logout.svg';
 import './SideBar.css'
 
-function SideBar({ toggleToApp, userName, removeUser, removeScore })  {
+function SideBar({ toggleToApp, userName, removeUser, removeScore, color })  {
   const [isOpen, setIsOpen] = useState(true);
   const [username, setUsername] = useState(null);
 
@@ -40,7 +40,7 @@ function SideBar({ toggleToApp, userName, removeUser, removeScore })  {
 
   return (
     <>
-    <div className={isOpen ? 'side-bar': 'side-bar-in'}>
+    <div className={isOpen ? 'side-bar': 'side-bar-in'} style={color === null ? {backgroundColor: '#795548'} : {backgroundColor: color}}>
       <div className="sideBar-closeIcon">
         <img className={isOpen ? 'closeIcon': 'openIcon'} src={isOpen ? closeIcon : openMenu} alt='close Icon' onClick={toggle} />
       </div>

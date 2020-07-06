@@ -56,6 +56,14 @@
       -moz-box-shadow: 1px -4px 15px -3px rgba(113,48,173,1);
       box-shadow: 1px -4px 15px -3px rgba(113,48,173,1);
   }
+  .result {
+    margin-top: 10%;
+  }
+  .result h4 {
+    text-align: center;
+    cursor: pointer;
+    color: blueviolet;
+  }
   @keyframes slideinSetting {
     from {
       width: 80%; 

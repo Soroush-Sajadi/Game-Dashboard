@@ -16,7 +16,8 @@ function App() {
   const [ isOpen, setIsOpen ] = useState(true);
   const [ user, setUser ] = useState(null);
   const [ score, setScore ] = useState(null);
-  const [category, setCategory ] = useState(null);
+  const [ category, setCategory ] = useState(null);
+  const [ color, setColor ] = useState(null);
 
   const toggle = (childData) => {
     setIsOpen(!childData);
@@ -41,6 +42,11 @@ function App() {
   const getCategory = (childData) => {
     setCategory(childData);
   }
+
+  const getColor = (childData) => {
+    setColor(childData)
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -49,7 +55,7 @@ function App() {
             <div className="route-app">
               <Switch>
                 <Route exact path="/" render={() => <Home sideBarState={isOpen} getCategory={getCategory} />}/>
-                <Route exact path="/setting" render={() => <Setting sideBarState={isOpen} />}/>
+                <Route exact path="/setting" render={() => <Setting sideBarState={isOpen} getColor={getColor} />}/>
                 <Route exact path="/login" render={() => <LogIn sideBarState={isOpen} getUser={getUser} getScore={getScore}/>}/>
                 <Route path="/login/account" render={() => <CreateAccount sideBarState={isOpen} />} />
                 <Route path="/quiz" render={() => <Quiz sideBarState={isOpen} category={category} getScore={getScore} />} />
@@ -59,7 +65,7 @@ function App() {
               </Switch>
             </div>
             <div className="side-bar-app">
-              <SideBar toggleToApp={toggle} userName={user} removeUser={removeUser} removeScore={removeScore} />
+              <SideBar toggleToApp={toggle} userName={user} removeUser={removeUser} removeScore={removeScore} color={color} />
             </div>
           </div>
       </BrowserRouter>

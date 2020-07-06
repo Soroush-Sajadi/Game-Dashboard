@@ -1,5 +1,4 @@
 
-
 .flip-card-true {
     background-color: transparent;
     margin: 1px 3px ;
@@ -29,6 +28,7 @@
 .card-wrap {
     display: flex;
     flex-wrap: wrap;
+    width: 90%;
 }
 .card-wrap h3 {
     float: right;

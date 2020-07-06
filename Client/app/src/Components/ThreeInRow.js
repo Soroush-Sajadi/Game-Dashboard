@@ -62,7 +62,6 @@ function ThreeInRow ({ sideBarState, getScore }) {
             }, 450)
             setBluePlayer([]);
             setRedPlayer([]);
-            console.log(selectColor,  color)
             selectColor === color ? sendData( getDataFromLocalStorage( 'username' ), +50 ): sendData( getDataFromLocalStorage( 'username' ), -50)
             return color === selectColor ? setNumberWinnerPlayer( numberWinnerPlayer + 1 ): setNumberWinnerPc ( numberWinnerPc + 1 );
           } else {
@@ -166,11 +165,11 @@ function ThreeInRow ({ sideBarState, getScore }) {
   useEffect  (() => {
     getData();
   },[])
-  
+
   return (
     <div className={ sideBarState ? 'threeInRow-wraper-open': 'threeInRow-wraper-close' }>
        {winner !== null ? 
-       <div>
+       <div className="result">
           {winner === selectColor ? 
             <h2>Congradulation! You are the winner</h2>:<h2>Sorry! You lost</h2>}
             <h4 onClick={restartGame}>Play again</h4>
@@ -178,8 +177,8 @@ function ThreeInRow ({ sideBarState, getScore }) {
        :
       <>
       {gameOver ? 
-        <div>
-          <h2>Game Is over</h2>
+        <div className="result">
+          <h2>Game Over</h2>
           <h4 onClick={restartGame}>Play again</h4>
         </div>
         :
