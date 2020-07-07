@@ -8,9 +8,9 @@ import openMenu from '../Images/openMenu.svg';
 import logOut from '../Images/logout.svg';
 import './SideBar.css'
 
-function SideBar({ toggleToApp, userName, removeUser, removeScore, color })  {
-  const [isOpen, setIsOpen] = useState(true);
-  const [username, setUsername] = useState(null);
+function SideBar({ toggleToApp, userName, removeUser, removeScore, color, posstion })  {
+  const [ isOpen, setIsOpen ] = useState(true);
+  const [ username, setUsername ] = useState(null);
 
   const getUsername = (name) => {
     setUsername(JSON.parse(window.localStorage.getItem(name)));
@@ -40,11 +40,15 @@ function SideBar({ toggleToApp, userName, removeUser, removeScore, color })  {
 
   return (
     <>
-    <div className={isOpen ? 'side-bar': 'side-bar-in'} style={color === null ? {backgroundColor: '#795548'} : {backgroundColor: color}}>
-      <div className="sideBar-closeIcon">
-        <img className={isOpen ? 'closeIcon': 'openIcon'} src={isOpen ? closeIcon : openMenu} alt='close Icon' onClick={toggle} />
-      </div>
-      <div className="sideBar-Route">
+    <div className={ posstion !== 'up' ? 'left': 'up'} >
+      <div className={isOpen ? 'side-bar': 'side-bar-in'} 
+        style={color === null ? {backgroundColor: '#795548'} : {backgroundColor: color}
+        //posstion === 'up' ? {width: '50%'}: (isOpen ? {width: '14%'} : {width: '3%'}) 
+      }>
+        <div className="sideBar-closeIcon">
+          <img className={isOpen ? 'closeIcon': 'openIcon'} src={isOpen ? closeIcon : openMenu} alt='close Icon' onClick={toggle} />
+        </div>
+        <div className="sideBar-Route">
         <ul>
           <NavLink to="/" style={{ textDecoration: 'none', color: 'white' }}>
             <li>
@@ -58,15 +62,18 @@ function SideBar({ toggleToApp, userName, removeUser, removeScore, color })  {
               <p>Settings</p>
             </li>
           </NavLink>
-          <NavLink to="/login" style={{ textDecoration: 'none', color: 'white' }}>
+            <NavLink to="/login" style={{ textDecoration: 'none', color: 'white' }}>
             <li onClick={logOutUser}>
               <img src={(userName === null && username === null) ? logIn: logOut}  />
               {(userName === null && username === null) ? <p>Log In</p> : <p>Log Out</p>}
             </li>
-          </NavLink>
-        </ul>
+            </NavLink>
+          </ul>
+        </div>
       </div>
     </div>
+    
+    
     </>
   );
 }

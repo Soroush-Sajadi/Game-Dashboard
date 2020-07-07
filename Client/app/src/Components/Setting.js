@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import './Setting.css'
 
-function Setting ({ sideBarState, getColor }) {
-  const [ color, setColor ] = useState(null);
+function Setting ({ sideBarState, getColor , getPosstion }) {
 
   const selectColor = (e) => {
-    getColor(e.target.getAttribute('id'))
+    getColor(e.target.getAttribute('id'));
+  }
+
+  const selectPosstion = (e) => {
+    getPosstion(e.target.getAttribute('value'));
   }
 
   return (
@@ -17,9 +20,20 @@ function Setting ({ sideBarState, getColor }) {
           </div>
           <div className="background-colors" onClick={selectColor}>
             <input type="radio" id="#795548" name="color" value="Brown"/>
-            <label for="Black">Brown</label>
+            <label for="Brown">Brown</label>
             <input type="radio" id="#2fb9cb" name="color" value="Blue/Green" />
             <label for="Blue/Green">Blue/Green</label>
+          </div>
+        </div>
+        <div className="wrapper-side-bar" onClick={selectPosstion}>
+          <div className="side-bar-title">
+            <h4>Side-Bar possition:</h4>
+          </div>
+          <div className="side-bsar-posstion">
+            <input type="radio"  name="side-bar" value="left"/>
+            <label for="left">Left</label>
+            <input type="radio" name="side-bar" value="up" />
+            <label for="up">Up</label>
           </div>
         </div>
       </div>

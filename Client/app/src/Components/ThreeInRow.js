@@ -122,17 +122,79 @@ function ThreeInRow ({ sideBarState, getScore }) {
     return true;
   }
 
-  const pcPlays = ( player, color ) => {
+  const bestPcSelect = (arr, selectedNumbers , color) => {
+    const arrLength = arr.length;
+    for( let i = 0; i < arrLength; i += 1 ) {
+      let sum = 0;
+      let bestSelect = 0;
+      for ( let j = 0; j < 2; j += 1 ) {
+        sum += Number(arr[j]);
+        bestSelect = 15 - sum
+      }
+      if (( bestSelect >= 1 && bestSelect <= 9 )) {
+        if (s(selectedNumbers, bestSelect) ) {
+          console.log('akmsvdkj')
+          changeDataState(data, color, bestSelect.toString());
+          selectedNumbers.push(bestSelect.toString())
+          color === 'red' ? redPlayer.push(bestSelect.toString()): bluePlayer.push(bestSelect.toString());
+          color === 'red' ? findWinner(redPlayer, 'red'): findWinner(bluePlayer, 'blue');
+          setTurn(turn + 1);
+          return true;
+        } else {
+          arr.push(arr.shift());
+        }
+      }
+      }
+      return false;
+    }
+  
+
+  const playRandom = (selectedNumbers, color) => {
     let randomNumber = Math.floor(Math.random() * 9) + 1;
-      if ( s(player, randomNumber) ) {
-        setTurn (turn + 1)
-        player.push( randomNumber.toString() );
-        changeDataState(data, color, randomNumber.toString())
+      if( s(selectedNumbers, randomNumber) ) {
+        console.log(randomNumber)
+        changeDataState(data, color, randomNumber.toString());
+        selectedNumbers.push(randomNumber.toString());
         color === 'red' ? redPlayer.push(randomNumber.toString()) : bluePlayer.push(randomNumber.toString());
         color === 'red' ? findWinner(redPlayer, 'red'): findWinner(bluePlayer, 'blue');
+        setTurn(turn + 1);
       } else {
-          pcPlays(allSelected , color);
+        playRandom(allSelected , color)
       }
+  }
+
+  const pcPlays = ( selectedNumbers, color ) => {
+    if ( selectedNumbers.length < 2 ) {
+      if(s(selectedNumbers, 5)) {
+        changeDataState(data, color, '5' )
+        selectedNumbers.push('5')
+        color === 'red' ? redPlayer.push('5') : bluePlayer.push('5');
+        setTurn(turn + 1);
+      } else {
+        changeDataState(data, color, '2' )
+          selectedNumbers.push('2')
+          color === 'red' ? redPlayer.push('2') : bluePlayer.push('2');
+          setTurn(turn + 1);
+      }
+    } else {
+      let player = '';
+      let pc = '';
+      color === 'red' ? player = bluePlayer : player = redPlayer;
+      color === 'red' ? pc = redPlayer : pc = bluePlayer;
+      if (allSelected.length === 3 ) {
+        bestPcSelect(player, allSelected, color);
+      } else {
+        if ( !bestPcSelect(pc, allSelected, color) && !bestPcSelect(player, allSelected, color)) {
+          playRandom(allSelected, color);
+        } else  {
+          if ( bestPcSelect(pc, allSelected, color) ) {
+          } else {
+            bestPcSelect(pc, allSelected, color)
+          }
+          
+        }
+      }
+    }
   }
 
   if (turn % 2 !== 0 && turn < 9 ) {
@@ -165,7 +227,6 @@ function ThreeInRow ({ sideBarState, getScore }) {
   useEffect  (() => {
     getData();
   },[])
-
   return (
     <div className={ sideBarState ? 'threeInRow-wraper-open': 'threeInRow-wraper-close' }>
        {winner !== null ? 

@@ -16,6 +16,7 @@
     background-color: #0000004a;
     text-align: center;
     display: flex;
+    flex-direction: column;
   }
   .wrapper-background {
     display: flex;
@@ -27,8 +28,24 @@
   }
   .background-colors {
     width: 60%;
-    margin-top: 4%;
+    margin-top: 3%;
   }
+
+  .wrapper-side-bar {
+    display: flex;
+    width: 100%;
+    height: 20%;  
+  }
+
+  .side-bar-title {
+    width: 40%;
+  }
+
+  .side-bsar-posstion {
+    width: 60%;
+    margin-top: 3%;
+  }
+
   
   @keyframes slideinSetting {
     from {
