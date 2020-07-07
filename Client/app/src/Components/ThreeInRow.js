@@ -133,7 +133,6 @@ function ThreeInRow ({ sideBarState, getScore }) {
       }
       if (( bestSelect >= 1 && bestSelect <= 9 )) {
         if (s(selectedNumbers, bestSelect) ) {
-          console.log('akmsvdkj')
           changeDataState(data, color, bestSelect.toString());
           selectedNumbers.push(bestSelect.toString())
           color === 'red' ? redPlayer.push(bestSelect.toString()): bluePlayer.push(bestSelect.toString());
@@ -181,9 +180,7 @@ function ThreeInRow ({ sideBarState, getScore }) {
       let pc = '';
       color === 'red' ? player = bluePlayer : player = redPlayer;
       color === 'red' ? pc = redPlayer : pc = bluePlayer;
-      if (allSelected.length === 3 ) {
-        bestPcSelect(player, allSelected, color);
-      } else {
+       
         if ( !bestPcSelect(pc, allSelected, color) && !bestPcSelect(player, allSelected, color)) {
           playRandom(allSelected, color);
         } else  {
@@ -193,7 +190,7 @@ function ThreeInRow ({ sideBarState, getScore }) {
           }
           
         }
-      }
+      
     }
   }
 
