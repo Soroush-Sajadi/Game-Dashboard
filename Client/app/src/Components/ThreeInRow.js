@@ -185,6 +185,7 @@ function ThreeInRow ({ sideBarState, getScore }) {
           playRandom(allSelected, color);
         } else  {
           if ( bestPcSelect(pc, allSelected, color) ) {
+            return 
           } else {
             bestPcSelect(pc, allSelected, color)
           }
